@@ -1,0 +1,668 @@
+/* ============================================================
+   LUXURY HIJABI — Login.css
+   Color palette: #5a3626 (primary), #7a4a34 (hover), #f8f3ec (cream bg),
+   #2c1a10 (dark text), #9a7060 (muted), #c4a99a (light accent)
+   Fonts: Cinzel (headings) + Raleway (body)
+   ============================================================ */
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background: #f8f3ec;
+  color: #2c1a10;
+  min-height: 100vh;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmerLine {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.04);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes inputGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(90, 54, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0);
+  }
+}
+
+@keyframes shakeBrief {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Page wrapper ── */
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  animation: fadeIn 0.4s ease both;
+}
+
+/* ── Decorative left panel ── */
+.auth-brand-panel {
+  background: linear-gradient(160deg, #3a2016 0%, #5a3626 50%, #7a4a34 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating decorative orbs */
+.auth-brand-panel::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    rgba(196, 169, 154, 0.18) 0%,
+    transparent 70%
+  );
+  top: -80px;
+  right: -80px;
+  border-radius: 50%;
+  animation: floatOrb 7s ease-in-out infinite;
+}
+
+.auth-brand-panel::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(
+    circle,
+    rgba(196, 169, 154, 0.12) 0%,
+    transparent 70%
+  );
+  bottom: -60px;
+  left: -60px;
+  border-radius: 50%;
+  animation: floatOrb 9s 2s ease-in-out infinite;
+}
+
+/* Gold shimmer line across the panel bottom */
+.auth-brand-panel .shimmer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a27e, transparent);
+  background-size: 400px 2px;
+  animation: shimmerLine 3s ease-in-out infinite;
+}
+
+.brand-logo-wrap {
+  margin-bottom: 36px;
+  animation: fadeDown 0.7s ease both;
+}
+
+.brand-logo-wrap img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.brand-tagline {
+  font-family: "Cinzel", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f8f3ec;
+  letter-spacing: 0.06em;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  animation: fadeDown 0.7s 0.1s ease both;
+}
+
+.brand-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: rgba(248, 243, 236, 0.7);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 320px;
+  animation: fadeDown 0.7s 0.2s ease both;
+}
+
+/* Decorative dots pattern */
+.brand-dots {
+  display: grid;
+  grid-template-columns: repeat(5, 8px);
+  gap: 10px;
+  margin-top: 48px;
+  animation: fadeDown 0.7s 0.3s ease both;
+}
+
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(196, 169, 154, 0.4);
+}
+
+.brand-dot:nth-child(3) {
+  background: rgba(196, 169, 154, 0.8);
+}
+
+/* ── Form panel (right side) ── */
+.auth-form-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  background: #f8f3ec;
+  overflow-y: auto;
+}
+
+.auth-form-box {
+  width: 100%;
+  max-width: 440px;
+  animation: fadeUp 0.6s 0.15s ease both;
+}
+
+.auth-form-title {
+  font-family: "Cinzel", serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.auth-form-subtitle {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #9a7060;
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+/* ── Error banner ── */
+.auth-error {
+  background: rgba(185, 64, 64, 0.09);
+  border: 1.5px solid rgba(185, 64, 64, 0.35);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13.5px;
+  color: #b94040;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: shakeBrief 0.4s ease both;
+}
+
+.auth-error i {
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+.auth-error.hidden {
+  display: none;
+}
+
+/* ── Form fields ── */
+.auth-field {
+  margin-bottom: 20px;
+}
+
+.auth-label {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a3626;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.auth-input-wrap {
+  position: relative;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #c4a99a;
+  font-size: 15px;
+  pointer-events: none;
+  transition: color 0.25s;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 13px 14px 13px 42px;
+  border: 1.5px solid rgba(90, 54, 38, 0.18);
+  border-radius: 10px;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #2c1a10;
+  background: #ffffff;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.auth-input::placeholder {
+  color: #c4a99a;
+}
+
+.auth-input:focus {
+  border-color: #5a3626;
+  box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.1);
+}
+
+.auth-input:focus + .auth-input-icon,
+.auth-input-wrap:focus-within .auth-input-icon {
+  color: #5a3626;
+}
+
+/* Password toggle button (show/hide) */
+.auth-pw-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #c4a99a;
+  font-size: 14px;
+  padding: 4px;
+  transition: color 0.22s;
+  line-height: 1;
+}
+
+.auth-pw-toggle:hover {
+  color: #5a3626;
+}
+
+/* ── Forgot password link ── */
+/*
+ * This is a <button> element in JSX (so it can trigger state changes),
+ * but visually it should look like a plain text link.
+ * We reset all browser button defaults and apply link-style visuals.
+ */
+.auth-forgot {
+  /* Reset browser button defaults */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+
+  /* Link-style appearance */
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a4a34;
+  text-decoration: none;
+  margin-top: -10px;
+  margin-bottom: 24px;
+  transition: color 0.22s;
+}
+
+.auth-forgot:hover {
+  color: #5a3626;
+  text-decoration: underline;
+}
+
+.auth-forgot:focus-visible {
+  outline: 2px solid rgba(90, 54, 38, 0.4);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── Submit button ── */
+.auth-submit-btn {
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  transition:
+    background 0.28s ease,
+    transform 0.2s ease,
+    box-shadow 0.28s ease;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7a4a34, #9a5a40);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(90, 54, 38, 0.38);
+}
+
+.auth-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.auth-submit-btn i {
+  font-size: 13px;
+  transition: transform 0.22s;
+}
+
+.auth-submit-btn:hover:not(:disabled) i {
+  transform: translateX(4px);
+}
+
+/* ── Divider ── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.auth-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(90, 54, 38, 0.12);
+}
+
+.auth-divider-text {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #c4a99a;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+/* ── Switch link (Login ↔ Sign Up) ── */
+.auth-switch {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #9a7060;
+}
+
+.auth-switch a {
+  color: #5a3626;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.22s;
+}
+
+.auth-switch a:hover {
+  color: #7a4a34;
+  text-decoration: underline;
+}
+
+/* ── Redirect notice (shown when user is directed from a guarded page) ── */
+.auth-redirect-notice {
+  background: rgba(90, 54, 38, 0.07);
+  border: 1.5px solid rgba(90, 54, 38, 0.18);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13.5px;
+  color: #5a3626;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeDown 0.5s ease both;
+}
+
+.auth-redirect-notice i {
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+.auth-redirect-notice.hidden {
+  display: none;
+}
+
+/* ── Back button (forgot password flow) ── */
+.auth-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a4a34;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 0.22s;
+}
+
+.auth-back-btn:hover {
+  color: #5a3626;
+  text-decoration: underline;
+}
+
+.auth-back-btn i {
+  font-size: 12px;
+}
+
+/* ── Password strength indicator ── */
+.pw-strength-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pw-strength-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(90, 54, 38, 0.1);
+  transition: background 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pw-strength-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  transition:
+    width 0.4s ease,
+    background 0.35s ease;
+}
+
+.pw-strength-bar.pw-weak::after {
+  width: 33%;
+  background: #b94040;
+}
+
+.pw-strength-bar.pw-medium::after {
+  width: 66%;
+  background: #c4820a;
+}
+
+.pw-strength-bar.pw-strong::after {
+  width: 100%;
+  background: #2e7d32;
+}
+
+.pw-strength-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.35s;
+}
+
+.pw-strength-label.pw-weak {
+  color: #b94040;
+}
+.pw-strength-label.pw-medium {
+  color: #c4820a;
+}
+.pw-strength-label.pw-strong {
+  color: #2e7d32;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide decorative panel on smaller screens */
+  .auth-brand-panel {
+    display: none;
+  }
+
+  .auth-form-panel {
+    min-height: 100vh;
+    padding: 48px 32px;
+  }
+
+  /* Show a compact brand header instead */
+  .auth-form-box::before {
+    content: "Luxury Hijabi";
+    display: block;
+    font-family: "Cinzel", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #5a3626;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(90, 54, 38, 0.12);
+  }
+}
+
+@media (max-width: 540px) {
+  .auth-form-panel {
+    padding: 36px 20px;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+
+  .auth-form-title {
+    font-size: 24px;
+  }
+
+  .auth-form-box {
+    max-width: 100%;
+  }
+}

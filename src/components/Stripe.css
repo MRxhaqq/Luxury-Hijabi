@@ -1,0 +1,493 @@
+/* ============================================================
+   LUXURY HIJABI — Stripe.css
+   ============================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes checkIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes authPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(196, 130, 10, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(196, 130, 10, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(196, 130, 10, 0);
+  }
+}
+
+/* ── Overlay ── */
+.stripe-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 16, 0.62);
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.25s ease both;
+}
+.stripe-overlay.hidden {
+  display: none;
+}
+
+/* ── Modal ── */
+.stripe-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 72px rgba(90, 54, 38, 0.28);
+  overflow: hidden;
+  animation: slideUp 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Header */
+.stripe-modal-header {
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stripe-modal-brand {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8f3ec;
+  letter-spacing: 0.05em;
+}
+.stripe-modal-amount {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f8f3ec;
+}
+.stripe-modal-close {
+  background: rgba(248, 243, 236, 0.18);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #f8f3ec;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.22s;
+}
+.stripe-modal-close:hover {
+  background: rgba(248, 243, 236, 0.3);
+}
+
+/* Test mode badge */
+.stripe-test-badge {
+  background: #f8f3ec;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7a4a34;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.1);
+}
+.stripe-test-badge i {
+  font-size: 11px;
+}
+
+/* Body */
+.stripe-modal-body {
+  padding: 24px;
+}
+
+/* Form fields */
+.stripe-field {
+  margin-bottom: 16px;
+}
+.stripe-label {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #5a3626;
+  margin-bottom: 7px;
+}
+.stripe-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.stripe-input-icon {
+  position: absolute;
+  left: 13px;
+  color: #c4a99a;
+  font-size: 15px;
+  pointer-events: none;
+  transition: color 0.22s;
+  z-index: 1;
+}
+.stripe-input-wrap:focus-within .stripe-input-icon {
+  color: #5a3626;
+}
+.stripe-input {
+  width: 100%;
+  padding: 12px 13px 12px 42px;
+  border: 1.5px solid rgba(90, 54, 38, 0.2);
+  border-radius: 10px;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #2c1a10;
+  background: #faf7f3;
+  outline: none;
+  transition:
+    border-color 0.22s,
+    box-shadow 0.22s,
+    background 0.22s;
+  letter-spacing: 0.04em;
+}
+.stripe-input::placeholder {
+  color: #c4a99a;
+  letter-spacing: 0.04em;
+}
+.stripe-input:focus {
+  border-color: #5a3626;
+  box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.1);
+  background: #fff;
+}
+.stripe-input.error {
+  border-color: #b94040;
+  box-shadow: 0 0 0 3px rgba(185, 64, 64, 0.12);
+  animation: shake 0.4s ease;
+}
+.stripe-card-icon {
+  position: absolute;
+  right: 13px;
+  font-size: 22px;
+  color: #c4a99a;
+}
+.stripe-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Hint */
+.stripe-hint {
+  background: rgba(90, 54, 38, 0.05);
+  border: 1px solid rgba(90, 54, 38, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+.stripe-hint-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7a4a34;
+  margin-bottom: 8px;
+}
+.stripe-hint-row {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #5a3626;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  padding: 5px 6px;
+  margin: 0 -6px;
+}
+.stripe-hint-row:hover {
+  background: rgba(90, 54, 38, 0.06);
+}
+.stripe-hint-row span:first-child {
+  font-weight: 600;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+/* Error banner */
+.stripe-error {
+  background: rgba(185, 64, 64, 0.08);
+  border: 1px solid rgba(185, 64, 64, 0.28);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: #b94040;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: shake 0.4s ease;
+}
+.stripe-error.hidden {
+  display: none;
+}
+
+/* Pay button */
+.stripe-pay-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 12px;
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    background 0.28s,
+    transform 0.2s,
+    box-shadow 0.28s;
+}
+.stripe-pay-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7a4a34, #9a5a40);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(90, 54, 38, 0.4);
+}
+.stripe-pay-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(248, 243, 236, 0.4);
+  border-top-color: #f8f3ec;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ── 3DS Auth Challenge ── */
+.stripe-auth-challenge {
+  padding: 32px 24px;
+  text-align: center;
+  animation: fadeIn 0.3s ease both;
+}
+.stripe-auth-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c4820a, #e09a22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  box-shadow: 0 8px 24px rgba(196, 130, 10, 0.35);
+  animation: authPulse 1.5s ease-in-out infinite;
+}
+.stripe-auth-icon i {
+  font-size: 30px;
+  color: #fff;
+}
+.stripe-auth-title {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c1a10;
+  margin-bottom: 10px;
+}
+.stripe-auth-body {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #9a7060;
+  line-height: 1.7;
+  max-width: 340px;
+  margin: 0 auto 22px;
+}
+.stripe-auth-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stripe-auth-confirm {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #c4820a, #e09a22);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background 0.25s,
+    transform 0.2s;
+}
+.stripe-auth-confirm:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e09a22, #c4820a);
+  transform: translateY(-1px);
+}
+.stripe-auth-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.stripe-auth-cancel {
+  padding: 12px 22px;
+  border: 1.5px solid rgba(90, 54, 38, 0.2);
+  border-radius: 10px;
+  background: #fff;
+  color: #5a3626;
+  font-family: "Cinzel", serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition:
+    background 0.22s,
+    border-color 0.22s;
+}
+.stripe-auth-cancel:hover {
+  background: #f8f3ec;
+  border-color: #5a3626;
+}
+
+/* ── Success ── */
+.stripe-success {
+  padding: 40px 24px;
+  text-align: center;
+  animation: fadeIn 0.3s ease both;
+}
+.stripe-success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2e7d32, #388e3c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.35);
+  animation: checkIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.stripe-success-icon i {
+  font-size: 34px;
+  color: #fff;
+}
+.stripe-success-title {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c1a10;
+  margin-bottom: 8px;
+}
+.stripe-success-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #9a7060;
+  line-height: 1.6;
+}
+
+/* Footer */
+.stripe-footer {
+  padding: 12px 24px;
+  border-top: 1px solid rgba(90, 54, 38, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  color: #9a7060;
+}
+.stripe-footer i {
+  color: #5a3626;
+}
+
+@media (max-width: 520px) {
+  .stripe-modal {
+    border-radius: 16px 16px 0 0;
+  }
+  .stripe-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .stripe-auth-actions {
+    flex-direction: column;
+  }
+  .stripe-auth-confirm,
+  .stripe-auth-cancel {
+    width: 100%;
+    justify-content: center;
+  }
+}

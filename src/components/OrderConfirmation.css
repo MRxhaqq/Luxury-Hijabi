@@ -1,0 +1,385 @@
+/* ============================================================
+   LUXURY HIJABI — OrderConfirmation.css
+   Printable / shareable order summary page
+   Color palette: #5a3626, #7a4a34, #f8f3ec, #2c1a10, #9a7060, #c4a99a
+   ============================================================ */
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.6); }
+  70% { transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes checkDraw {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ringExpand {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+}
+
+/* ── Page ── */
+.oc-page {
+  background: #f8f3ec;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ── Top bar ── */
+.oc-topbar {
+  background: #5a3626;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  box-shadow: 0 2px 16px rgba(90, 54, 38, 0.22);
+  animation: fadeDown 0.4s ease both;
+  position: relative;
+}
+.oc-topbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a27e, transparent);
+  background-size: 400px 2px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+.oc-topbar-brand {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8f3ec;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.oc-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.oc-topbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: 1px solid rgba(248, 243, 236, 0.3);
+  background: rgba(248, 243, 236, 0.12);
+  color: #f8f3ec;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
+}
+.oc-topbar-btn:hover { background: rgba(248, 243, 236, 0.24); transform: translateY(-1px); }
+.oc-topbar-btn.print-btn { background: rgba(248, 243, 236, 0.18); }
+
+/* ── Main wrapper ── */
+.oc-wrap {
+  max-width: 780px;
+  margin: 40px auto 60px;
+  padding: 0 24px;
+}
+
+/* ── Success hero ── */
+.oc-hero {
+  text-align: center;
+  padding: 48px 20px 40px;
+  animation: fadeUp 0.5s ease both;
+}
+.oc-success-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 30px rgba(90, 54, 38, 0.35);
+  animation: ringExpand 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.oc-success-ring i {
+  font-size: 36px;
+  color: #f8f3ec;
+}
+.oc-hero-title {
+  font-family: "Cinzel", serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.oc-hero-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #9a7060;
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto 16px;
+}
+.oc-order-id-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(90, 54, 38, 0.08);
+  border: 1px solid rgba(90, 54, 38, 0.15);
+  border-radius: 24px;
+  padding: 7px 18px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: #5a3626;
+  font-weight: 600;
+}
+
+/* ── Cards ── */
+.oc-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(90, 54, 38, 0.08);
+  box-shadow: 0 4px 24px rgba(90, 54, 38, 0.09);
+  margin-bottom: 20px;
+  overflow: hidden;
+  animation: fadeUp 0.45s ease both;
+}
+.oc-card-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.oc-card-header i { color: #7a4a34; font-size: 15px; }
+.oc-card-title {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+}
+.oc-card-body { padding: 22px 24px; }
+
+/* ── Order meta row ── */
+.oc-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.oc-meta-item {}
+.oc-meta-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9a7060;
+  margin-bottom: 4px;
+}
+.oc-meta-value {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c1a10;
+}
+
+/* ── Items list ── */
+.oc-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.07);
+  align-items: center;
+}
+.oc-item:last-child { border-bottom: none; }
+.oc-item-img-wrap {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8f3ec;
+  flex-shrink: 0;
+}
+.oc-item-img { width: 100%; height: 100%; object-fit: cover; }
+.oc-item-info { flex: 1; min-width: 0; }
+.oc-item-name {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c1a10;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oc-item-qty {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #9a7060;
+}
+.oc-item-price {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #5a3626;
+  white-space: nowrap;
+}
+
+/* ── Totals ── */
+.oc-totals { }
+.oc-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #7a5a4a;
+}
+.oc-total-row.grand {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c1a10;
+  border-top: 1.5px solid rgba(90, 54, 38, 0.12);
+  margin-top: 8px;
+  padding-top: 14px;
+}
+.oc-total-row.grand span:last-child { color: #5a3626; }
+
+/* ── Tracking steps ── */
+.oc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.oc-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.oc-step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 2px solid rgba(90, 54, 38, 0.15);
+  background: #f8f3ec;
+  color: #c4a99a;
+}
+.oc-step.done .oc-step-dot {
+  background: #5a3626;
+  border-color: #5a3626;
+  color: #f8f3ec;
+}
+.oc-step.active .oc-step-dot {
+  background: #fff;
+  border-color: #5a3626;
+  color: #5a3626;
+}
+.oc-step-info {}
+.oc-step-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c1a10;
+}
+.oc-step-date {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #9a7060;
+}
+
+/* ── CTA buttons ── */
+.oc-cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.oc-cta-primary {
+  flex: 1;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+.oc-cta-primary:hover {
+  background: linear-gradient(135deg, #7a4a34, #9a5a40);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(90, 54, 38, 0.34);
+}
+.oc-cta-secondary {
+  padding: 14px 20px;
+  border: 1.5px solid rgba(90, 54, 38, 0.25);
+  border-radius: 10px;
+  background: #fff;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #5a3626;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: background 0.22s, border-color 0.22s, transform 0.2s;
+}
+.oc-cta-secondary:hover { background: #f8f3ec; border-color: #5a3626; transform: translateY(-1px); }
+
+/* ── Print styles ── */
+@media print {
+  .oc-topbar-actions,
+  .oc-cta-row { display: none !important; }
+  .oc-page { background: #fff; }
+  .oc-card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .oc-wrap { padding: 0 16px; margin-top: 24px; }
+  .oc-meta-grid { grid-template-columns: 1fr; }
+  .oc-hero-title { font-size: 24px; }
+  .oc-cta-row { flex-direction: column; }
+  .oc-topbar { padding: 0 16px; }
+}

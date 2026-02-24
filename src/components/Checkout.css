@@ -1,0 +1,731 @@
+/* ============================================================
+   LUXURY HIJABI — Checkout.css  (mirrors checkout.css main content)
+   All styles from the original checkout.css except header/progress
+   which live in CheckoutHeader.css
+   ============================================================ */
+
+/* ── Main layout ── */
+.main-layout {
+  max-width: 1340px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Column title ── */
+.col-title {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+}
+
+/* ── Order card ── */
+.order-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(90, 54, 38, 0.1);
+  border: 1px solid rgba(90, 54, 38, 0.07);
+  margin-bottom: 22px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+.order-card:hover {
+  box-shadow: 0 12px 40px rgba(90, 54, 38, 0.18);
+  transform: translateY(-3px);
+}
+
+/* Card exit animation — triggered by .card-removing class set in React */
+@keyframes cardSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 400px;
+    margin-bottom: 22px;
+  }
+  30% {
+    opacity: 0;
+    transform: translateX(-20px);
+    max-height: 400px;
+    margin-bottom: 22px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+    max-height: 0;
+    margin-bottom: 0;
+  }
+}
+.order-card.card-removing {
+  animation: cardSlideOut 0.64s ease forwards;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #5a3626 0%, #7a4a34 100%);
+  color: #f8f3ec;
+  padding: 11px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.card-header i {
+  opacity: 0.85;
+}
+.card-header strong {
+  font-weight: 700;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: 114px 1fr auto;
+  gap: 22px;
+  padding: 22px;
+  align-items: start;
+}
+
+.prod-img-wrap {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8f3ec;
+  box-shadow: 0 2px 10px rgba(90, 54, 38, 0.12);
+  flex-shrink: 0;
+}
+.prod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.order-card:hover .prod-img {
+  transform: scale(1.07);
+}
+
+.prod-name {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 6px;
+  color: #2c1a10;
+}
+.prod-price {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #5a3626;
+  margin-bottom: 10px;
+}
+.prod-meta {
+  font-family: "Raleway", sans-serif;
+  font-size: 13.5px;
+  color: #9a7060;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Qty select ── */
+.qty-select {
+  padding: 4px 8px;
+  border: 1px solid rgba(90, 54, 38, 0.25);
+  border-radius: 6px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: #2c1a10;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.qty-select:focus {
+  border-color: #5a3626;
+  box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.12);
+}
+
+/* ── Delete button ── */
+.txt-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0;
+  transition: color 0.2s;
+}
+.delete-btn {
+  color: #b94040;
+}
+.delete-btn:hover {
+  color: #7a2020;
+  text-decoration: underline;
+}
+
+/* ── Delivery radio options ── */
+.delivery-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+}
+.opts-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9a7060;
+  margin-bottom: 2px;
+}
+.radio-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(90, 54, 38, 0.1);
+  transition:
+    border-color 0.22s,
+    background 0.22s;
+}
+/* Highlight selected radio row using :has — matches original CSS */
+.radio-row:has(input:checked) {
+  border-color: #5a3626;
+  background: rgba(90, 54, 38, 0.04);
+}
+.radio-row input[type="radio"] {
+  display: none;
+}
+.radio-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #c4a99a;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: border-color 0.22s;
+}
+.radio-row:has(input:checked) .radio-dot {
+  border-color: #5a3626;
+}
+.radio-dot::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: #5a3626;
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.22s,
+    transform 0.22s;
+}
+.radio-row:has(input:checked) .radio-dot::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.radio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.35;
+}
+.radio-info strong {
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c1a10;
+}
+.radio-info em {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  color: #9a7060;
+}
+
+/* ── Empty state ── */
+.co-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 16px;
+  animation: fadeUp 0.5s ease both;
+}
+.co-empty-state i {
+  font-size: 52px;
+  color: #c4a99a;
+  animation: popIn 0.5s ease both;
+}
+.co-empty-state p {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  color: #9a7060;
+  letter-spacing: 0.04em;
+}
+.continue-link {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #5a3626;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ── Payment summary sidebar ── */
+.summary-col {
+  position: sticky;
+  top: 130px; /* sticks below the fixed header + progress strip */
+}
+.summary-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 32px rgba(90, 54, 38, 0.12);
+  border: 1px solid rgba(90, 54, 38, 0.08);
+  padding: 28px 26px;
+}
+.summary-title {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c1a10;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.1);
+}
+
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.sum-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #7a5a4a;
+}
+.sum-val {
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c1a10;
+}
+.sum-divider {
+  height: 1px;
+  background: rgba(90, 54, 38, 0.09);
+  margin: 12px 0;
+}
+.total-row {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c1a10;
+  margin-top: 4px;
+}
+.total-row span:last-child {
+  color: #5a3626;
+}
+
+/* ── Place Order button ── */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(90, 54, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0);
+  }
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes spinReset {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.place-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    background 0.3s ease,
+    transform 0.22s ease,
+    box-shadow 0.3s ease;
+  animation: pulse 2.5s 1.5s ease infinite;
+}
+.place-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7a4a34, #9a5a40);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(90, 54, 38, 0.4);
+  animation: none;
+}
+.place-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  animation: none;
+}
+.place-btn-text {
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+.place-btn-icon {
+  font-size: 14px;
+}
+
+/* ── Secure checkout note ── */
+.secure-note {
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  color: #9a7060;
+  text-align: center;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.secure-note i {
+  color: #5a3626;
+  font-size: 13px;
+}
+
+/* ── Promo code row ── */
+.promo-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.promo-input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1.5px solid rgba(90, 54, 38, 0.2);
+  border-radius: 8px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: #2c1a10;
+  background: #faf7f3;
+  outline: none;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.promo-input:focus {
+  border-color: #5a3626;
+  box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.1);
+}
+.promo-btn {
+  padding: 9px 16px;
+  background: #5a3626;
+  color: #f8f3ec;
+  border: none;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.25s,
+    transform 0.2s;
+}
+.promo-btn:hover:not(:disabled) {
+  background: #7a4a34;
+  transform: translateY(-1px);
+}
+.promo-btn:disabled {
+  cursor: default;
+}
+
+/* Promo state classes toggled by React state */
+.promo-input.promo-success {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+.promo-input.promo-error {
+  border-color: #b94040;
+  box-shadow: 0 0 0 3px rgba(185, 64, 64, 0.15);
+}
+.promo-btn.promo-btn-success {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* ── Reset button ── */
+.co-reset-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  background: #ffffff;
+  border: 1.5px solid rgba(90, 54, 38, 0.2);
+  border-radius: 30px;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a3626;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(90, 54, 38, 0.14);
+  z-index: 300;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    transform 0.22s;
+}
+.co-reset-btn:hover {
+  background: #f8f3ec;
+  border-color: #5a3626;
+  transform: translateY(-2px);
+}
+.co-reset-btn.spinning i {
+  animation: spinReset 0.5s ease both;
+}
+
+/* ── Success overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 16, 0.6);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeDown 0.3s ease both;
+}
+.overlay.hidden {
+  display: none;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(90, 54, 38, 0.24);
+  animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.success-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(90, 54, 38, 0.35);
+}
+.success-ring i {
+  font-size: 30px;
+  color: #f8f3ec;
+}
+.success-title {
+  font-family: "Cinzel", serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2c1a10;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.success-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #9a7060;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.success-close {
+  padding: 12px 32px;
+  background: #5a3626;
+  color: #f8f3ec;
+  border: none;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    transform 0.22s;
+}
+.success-close:hover {
+  background: #7a4a34;
+  transform: translateY(-1px);
+}
+
+/* ── Mobile payment summary drawer ── */
+.payment-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 40px rgba(90, 54, 38, 0.18);
+  z-index: 400;
+  padding: 0 24px 32px;
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.payment-drawer.open {
+  transform: translateY(0);
+}
+
+.payment-drawer-handle {
+  width: 44px;
+  height: 4px;
+  background: rgba(90, 54, 38, 0.18);
+  border-radius: 4px;
+  margin: 14px auto 20px;
+}
+.payment-drawer-inner {
+  padding-bottom: 8px;
+}
+.payment-drawer-title {
+  font-family: "Cinzel", serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.1);
+}
+.payment-drawer-place-btn {
+  margin-top: 16px;
+}
+
+/* Swipe-to-close backdrop */
+.payment-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 16, 0.4);
+  z-index: 390;
+}
+.payment-drawer-backdrop.hidden {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  /* Move summary above the items on tablet/mobile */
+  .summary-col {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-layout {
+    padding: 0 14px;
+  }
+  .card-body {
+    grid-template-columns: 90px 1fr;
+    grid-template-rows: auto auto;
+  }
+  /* Delivery options span full width on small screens */
+  .delivery-opts {
+    grid-column: 1 / -1;
+    min-width: unset;
+  }
+  .prod-img-wrap {
+    width: 86px;
+    height: 86px;
+  }
+  .summary-card {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-inner {
+    padding: 0 14px;
+  }
+}

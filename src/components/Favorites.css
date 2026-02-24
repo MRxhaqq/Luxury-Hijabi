@@ -1,0 +1,756 @@
+/* ============================================================
+   LUXURY HIJABI — Favorites.css
+   Matches the site palette: #5a3626, #7a4a34, #f8f3ec, #2c1a10, #9a7060
+   Fonts: Cinzel (headings/prices) + Raleway (body)
+   ============================================================ */
+
+/* ── Keyframes ── */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cardSlideOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    max-height: 500px;
+    margin-bottom: 24px;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+    max-height: 500px;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+@keyframes spinReset {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+/* ── Animation helper classes ── */
+.anim-up {
+  animation: fadeUp 0.5s ease both;
+}
+.delay-1 {
+  animation-delay: 0.05s;
+}
+.delay-2 {
+  animation-delay: 0.1s;
+}
+.delay-3 {
+  animation-delay: 0.18s;
+}
+.delay-4 {
+  animation-delay: 0.26s;
+}
+.delay-5 {
+  animation-delay: 0.34s;
+}
+
+/* ── Header ── */
+.fav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: #5a3626;
+  z-index: 200;
+  box-shadow: 0 2px 20px rgba(90, 54, 38, 0.3);
+  animation: fadeDown 0.45s ease both;
+}
+
+.fav-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a27e, transparent);
+  background-size: 400px 2px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.fav-header-inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.fav-brand-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: transform 0.28s ease;
+}
+
+.fav-brand:hover .fav-brand-logo {
+  transform: scale(1.04);
+}
+
+.fav-header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fav-heading {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f8f3ec;
+  letter-spacing: 0.06em;
+}
+
+.fav-count-badge {
+  background: rgba(248, 243, 236, 0.18);
+  border: 1px solid rgba(248, 243, 236, 0.3);
+  color: #f8f3ec;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.fav-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.fav-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: #f8f3ec;
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: rgba(248, 243, 236, 0.1);
+  border: 1px solid rgba(248, 243, 236, 0.18);
+  transition:
+    background 0.28s ease,
+    transform 0.28s ease;
+}
+
+.fav-nav-link:hover {
+  background: rgba(248, 243, 236, 0.22);
+  transform: translateY(-1px);
+}
+
+/* ── Main content area ── */
+.fav-main {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 100px 28px 60px; /* 68px header + 32px breathing room */
+}
+
+/* ── Page title row ── */
+.fav-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.fav-page-title {
+  font-family: "Cinzel", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+}
+
+.fav-page-count {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #9a7060;
+}
+
+/* ── Grid of favorite cards ── */
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ── Individual favorite card ── */
+.fav-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(90, 54, 38, 0.09);
+  border: 1px solid rgba(90, 54, 38, 0.07);
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  position: relative;
+}
+
+.fav-card:hover {
+  box-shadow: 0 12px 40px rgba(90, 54, 38, 0.18);
+  transform: translateY(-5px);
+}
+
+/* Exit animation when an item is removed from favorites */
+.fav-card.fav-card-removing {
+  animation: cardSlideOut 0.52s ease forwards;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Card image ── */
+.fav-card-img-wrap {
+  height: 220px;
+  overflow: hidden;
+  background: #f8f3ec;
+}
+
+.fav-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.fav-card:hover .fav-card-img {
+  transform: scale(1.07);
+}
+
+/* ── Remove button (top-right corner of card) ── */
+.fav-remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(248, 243, 236, 0.92);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(90, 54, 38, 0.18);
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease;
+  z-index: 2;
+}
+
+.fav-remove-btn i {
+  font-size: 15px;
+  color: #b94040;
+  transition: color 0.22s;
+}
+
+.fav-remove-btn:hover {
+  background: #b94040;
+  transform: scale(1.1);
+}
+
+.fav-remove-btn:hover i {
+  color: #fff;
+}
+
+/* Beating animation class toggled on remove button click */
+.fav-remove-btn.beating i {
+  animation: heartPulse 0.45s ease;
+}
+
+/* ── Card content ── */
+.fav-card-body {
+  padding: 16px 18px 18px;
+}
+
+.fav-card-name {
+  font-family: "Raleway", sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #2c1a10;
+  line-height: 1.45;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 42px;
+}
+
+/* Star rating row */
+.fav-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.fav-card-stars i {
+  color: #5a3626;
+  font-size: 13px;
+}
+
+.fav-card-rating-count {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #9a7060;
+}
+
+.fav-card-price {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5a3626;
+  margin-bottom: 14px;
+}
+
+/* Add to cart button on each favorite card */
+.fav-add-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    background 0.28s ease,
+    transform 0.2s ease,
+    box-shadow 0.28s ease;
+}
+
+.fav-add-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7a4a34, #9a5a40);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(90, 54, 38, 0.35);
+}
+
+.fav-add-btn.btn-added {
+  background: #2e7d32;
+  box-shadow: 0 6px 18px rgba(46, 125, 50, 0.3);
+}
+
+/* ── Empty state ── */
+.fav-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  gap: 18px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.fav-empty-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(90, 54, 38, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.55s ease both;
+}
+
+.fav-empty-icon i {
+  font-size: 38px;
+  color: #c4a99a;
+}
+
+.fav-empty-title {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  color: #2c1a10;
+  letter-spacing: 0.04em;
+}
+
+.fav-empty-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  color: #9a7060;
+  max-width: 340px;
+  line-height: 1.7;
+}
+
+.fav-shop-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #5a3626;
+  color: #f8f3ec;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease;
+}
+
+.fav-shop-link:hover {
+  background: #7a4a34;
+  transform: translateY(-2px);
+}
+
+/* ── Cart toast notification ── */
+@keyframes cartToastIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes cartToastOut {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px) scale(0.95);
+  }
+}
+
+.fav-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c1a10;
+  color: #f8f3ec;
+  padding: 13px 22px;
+  border-radius: 40px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 600;
+  box-shadow: 0 8px 28px rgba(44, 26, 16, 0.35);
+  white-space: nowrap;
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: cartToastIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.fav-toast i {
+  color: #7fc47f;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.fav-toast.hidden {
+  display: none;
+}
+
+.fav-toast.toast-out {
+  animation: cartToastOut 0.32s ease forwards;
+}
+
+/* ── Hamburger menu button — Favorites page (mobile only) ── */
+.fav-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: 1.5px solid rgba(248, 243, 236, 0.4);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease;
+}
+
+.fav-menu-toggle:hover {
+  border-color: #f8f3ec;
+}
+
+.fav-menu-toggle span {
+  display: block;
+  height: 2px;
+  background: #f8f3ec;
+  border-radius: 2px;
+  transition:
+    transform 0.35s ease,
+    opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* X animation when drawer is open */
+.fav-menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.fav-menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.fav-menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Favorites mobile drawer ── */
+.fav-nav-drawer {
+  display: none; /* flex only on mobile via media query */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #5a3626;
+  z-index: 199;
+  padding: 80px 20px 24px;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(90, 54, 38, 0.3);
+  transform: translateY(-110%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fav-nav-drawer.open {
+  transform: translateY(0);
+}
+
+/* Drawer nav links — full width, stacked vertically */
+.fav-drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(248, 243, 236, 0.15);
+  background: rgba(248, 243, 236, 0.07);
+  color: #f8f3ec;
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+  cursor: pointer;
+}
+
+.fav-drawer-link:hover {
+  background: rgba(248, 243, 236, 0.15);
+  border-color: rgba(248, 243, 236, 0.3);
+}
+
+/* Sign-out inside the drawer is a button styled like a link */
+.fav-drawer-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid rgba(248, 243, 236, 0.15);
+  border-radius: 8px;
+  padding: 13px 16px;
+  text-align: left;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #f8f3ec;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(248, 243, 236, 0.07);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.fav-drawer-btn:hover {
+  background: rgba(248, 243, 236, 0.15);
+  border-color: rgba(248, 243, 236, 0.3);
+}
+
+/* Cart badge inside the drawer */
+.fav-drawer-badge {
+  margin-left: auto;
+  background: rgba(196, 169, 154, 0.85);
+  color: #2c1a10;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 8px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .fav-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .fav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .fav-page-title {
+    font-size: 22px;
+  }
+  .fav-card-img-wrap {
+    height: 180px;
+  }
+
+  /* Compress nav link padding on tablets */
+  .fav-nav-link {
+    padding: 7px 10px;
+    font-size: 11px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  /*
+   * p3 fix — on mobile the full nav bar is too congested.
+   * Hide the nav links and show a hamburger button instead,
+   * exactly like the product display page header does.
+   */
+  .fav-header-nav {
+    display: none;
+  } /* hide desktop nav links */
+  .fav-menu-toggle {
+    display: flex;
+  } /* show hamburger button */
+  .fav-nav-drawer {
+    display: flex;
+  } /* enable the drawer */
+
+  /* Shrink the center text so brand + heading fit without pushing anything off */
+  .fav-heading {
+    font-size: 15px;
+  }
+  .fav-count-badge {
+    display: none;
+  }
+
+  .fav-header-inner {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .fav-main {
+    padding: 88px 16px 60px;
+  }
+  .fav-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .fav-card-img-wrap {
+    height: 200px;
+  }
+}

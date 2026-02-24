@@ -1,0 +1,28 @@
+/* ============================================================
+   LUXURY HIJABI — general.css
+   Global reset & base typography
+   Fonts: Cinzel (display) + Raleway (body)
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: #f8f3ec;
+  color: #2c1a10;
+  min-height: 100vh;
+}

@@ -1,0 +1,280 @@
+/* ============================================================
+   LUXURY HIJABI — CheckoutHeader.css  (mirrors checkout.css header section)
+   body padding-top: 114px = 68px header + 46px progress strip
+   Fonts: Cinzel (headings/prices) + Raleway (body)
+   ============================================================ */
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Raleway", sans-serif;
+  background: #f8f3ec;
+  color: #2c1a10;
+  min-height: 100vh;
+  /* 68px header + 46px progress strip = 114px clearance */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes progressGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 50%;
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(90, 54, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0);
+  }
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes numberFlip {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes drawerUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes spinReset {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.anim-up {
+  animation: fadeUp 0.5s ease both;
+}
+.delay-1 {
+  animation-delay: 0.05s;
+}
+.delay-2 {
+  animation-delay: 0.1s;
+}
+.delay-3 {
+  animation-delay: 0.18s;
+}
+.delay-4 {
+  animation-delay: 0.26s;
+}
+.delay-5 {
+  animation-delay: 0.32s;
+}
+
+/* ── Header ── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: #5a3626;
+  z-index: 200;
+  box-shadow: 0 2px 20px rgba(90, 54, 38, 0.3);
+  animation: fadeDown 0.45s ease both;
+}
+.header-inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.brand-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition:
+    transform 0.28s ease,
+    filter 0.28s ease;
+}
+.brand:hover .brand-logo {
+  transform: scale(1.04);
+  filter: brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(10deg);
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.checkout-heading {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #f8f3ec;
+  letter-spacing: 0.05em;
+}
+.item-count-badge {
+  background: rgba(248, 243, 236, 0.18);
+  border: 1px solid rgba(248, 243, 236, 0.3);
+  color: #f8f3ec;
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Receipt / summary toggle button (mobile) */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(248, 243, 236, 0.14);
+  border: 1px solid rgba(248, 243, 236, 0.25);
+  border-radius: 50%;
+  color: #f8f3ec;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background 0.28s ease,
+    transform 0.28s ease;
+}
+.icon-btn:hover {
+  background: rgba(248, 243, 236, 0.28);
+  transform: scale(1.08);
+}
+
+/* ── Progress strip (fixed just below the header) ── */
+.progress-wrap {
+  position: fixed;
+  top: 68px; /* sits right below the 68px header */
+  left: 0;
+  right: 0;
+  height: 46px;
+  background: #ede4d8;
+  z-index: 190;
+  padding: 8px 24px 6px;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.08);
+  animation: fadeDown 0.45s 0.05s ease both;
+}
+.progress-track {
+  height: 3px;
+  background: rgba(90, 54, 38, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #7a4a34, #5a3626);
+  border-radius: 4px;
+  animation: progressGrow 1s 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+.prog-step {
+  font-family: "Cinzel", serif;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c4a99a;
+}
+.prog-step.active {
+  color: #5a3626;
+  font-weight: 700;
+}
+.prog-step.done {
+  color: #7a4a34;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .checkout-heading {
+    font-size: 17px;
+  }
+}
+@media (max-width: 420px) {
+  .header-inner {
+    padding: 0 14px;
+  }
+  .checkout-heading {
+    font-size: 15px;
+  }
+  .item-count-badge {
+    display: none;
+  }
+}

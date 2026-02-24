@@ -1,0 +1,106 @@
+/* ============================================================
+   LUXURY HIJABI — SkeletonLoader.css
+   Skeleton screen animation for product grid
+   ============================================================ */
+
+@keyframes skeletonShimmer {
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Skeleton base pulse ── */
+.sk-pulse {
+  background: linear-gradient(90deg,
+    #e8ddd5 0px,
+    #f0e8e0 40px,
+    #e8ddd5 80px
+  );
+  background-size: 600px 100%;
+  animation: skeletonShimmer 1.6s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+/* ── Product card skeleton ── */
+.sk-card {
+  background: #fff;
+  border-radius: 0;
+  border: 1px solid #f8f3ec;
+  border-left: 0;
+  border-bottom: 0;
+  padding: 40px 10px 20px;
+  animation: fadeIn 0.4s ease both;
+}
+
+.sk-img {
+  height: 250px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.sk-line {
+  height: 14px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+.sk-line.w-80 { width: 80%; }
+.sk-line.w-60 { width: 60%; }
+.sk-line.w-40 { width: 40%; }
+.sk-line.w-30 { width: 30%; }
+.sk-line.h-20 { height: 20px; }
+.sk-line.h-28 { height: 28px; margin-bottom: 14px; }
+
+/* Star rating row */
+.sk-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+.sk-star {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.sk-rating-count {
+  height: 12px;
+  width: 50px;
+  border-radius: 6px;
+}
+
+/* Button */
+.sk-btn {
+  height: 36px;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* ── Grid container matches .grid-container ── */
+.sk-grid {
+  margin-top: 63px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .sk-grid { grid-template-columns: repeat(4, 1fr); }
+  .sk-img { height: 220px; }
+}
+@media (max-width: 900px) {
+  .sk-grid { grid-template-columns: repeat(3, 1fr); margin-top: 55px; }
+  .sk-card { padding: 28px 8px 18px; }
+  .sk-img { height: 200px; }
+}
+@media (max-width: 650px) {
+  .sk-grid { grid-template-columns: repeat(2, 1fr); margin-top: 50px; }
+  .sk-img { height: 170px; }
+}
+@media (max-width: 420px) {
+  .sk-grid { grid-template-columns: 1fr; margin-top: 48px; }
+  .sk-img { height: 240px; }
+}

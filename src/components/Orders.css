@@ -1,0 +1,740 @@
+/* ============================================================
+   LUXURY HIJABI — Orders.css  (mirrors orders.css main content)
+   All styles except the header section (which lives in OrdersHeader.css)
+   ============================================================ */
+
+/* ── Main wrap ── */
+.main-wrap {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+}
+
+.section-title {
+  font-family: "Cinzel", serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2c1a10;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Order group card ── */
+.order-group {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 28px rgba(90, 54, 38, 0.09);
+  border: 1px solid rgba(90, 54, 38, 0.07);
+  margin-bottom: 28px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+.order-group:hover {
+  box-shadow: 0 10px 40px rgba(90, 54, 38, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Order metadata row (gradient header) ── */
+.order-meta {
+  display: flex;
+  align-items: center;
+  padding: 16px 28px;
+  background: linear-gradient(90deg, #5a3626 0%, #7a4a34 100%);
+  flex-wrap: wrap;
+  gap: 4px 32px;
+}
+.order-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+/* Order ID pushed to the right on wide screens */
+.order-meta-id {
+  margin-left: auto;
+}
+
+.meta-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(248, 243, 236, 0.65);
+}
+.meta-value {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f8f3ec;
+}
+.meta-total {
+  font-family: "Cinzel", serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #f8f3ec;
+}
+.meta-id {
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(248, 243, 236, 0.7);
+  letter-spacing: 0.01em;
+  word-break: break-all;
+}
+
+/* ── Order item row ── */
+.order-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 24px;
+  padding: 24px 28px;
+  align-items: center;
+  border-bottom: 1px solid rgba(90, 54, 38, 0.07);
+  transition: background 0.22s ease;
+}
+.order-item:last-child {
+  border-bottom: none;
+}
+.order-item:hover {
+  background: rgba(248, 243, 236, 0.55);
+}
+
+.item-img-wrap {
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8f3ec;
+  box-shadow: 0 2px 12px rgba(90, 54, 38, 0.13);
+  flex-shrink: 0;
+}
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.order-item:hover .item-img {
+  transform: scale(1.07);
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.item-name {
+  font-family: "Raleway", sans-serif;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #2c1a10;
+  line-height: 1.4;
+}
+.item-arriving {
+  font-family: "Raleway", sans-serif;
+  font-size: 13.5px;
+  color: #7a4a34;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+}
+.item-arriving i {
+  font-size: 13px;
+  color: #c4a99a;
+}
+.item-arriving strong {
+  color: #5a3626;
+  font-weight: 700;
+}
+.arriving-done {
+  color: #4a7c59;
+}
+
+.item-qty {
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: #9a7060;
+}
+.item-qty strong {
+  color: #2c1a10;
+}
+
+/* ── Add to Cart button (in orders list) ── */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(90, 54, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(90, 54, 38, 0);
+  }
+}
+.btn-add-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #5a3626 0%, #7a4a34 100%);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  align-self: flex-start;
+}
+/* Hover gradient overlay (::before trick from original) */
+.btn-add-cart::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #7a4a34, #3e2418);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.btn-add-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(90, 54, 38, 0.38);
+}
+.btn-add-cart:hover::before {
+  opacity: 1;
+}
+.btn-add-cart:active {
+  transform: scale(0.97);
+  animation: pulse 0.45s ease;
+}
+.btn-add-cart i,
+.btn-add-cart span {
+  position: relative;
+  z-index: 1;
+}
+/* Brief scale-down feedback when clicked */
+.btn-add-cart.btn-clicked {
+  transform: scale(0.94);
+}
+
+/* ── Track Package button ── */
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.btn-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1.5px solid #c4a99a;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #5a3626;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+.btn-track i {
+  font-size: 13px;
+  transition: transform 0.25s ease;
+}
+.btn-track:hover {
+  background: #5a3626;
+  border-color: #5a3626;
+  color: #f8f3ec;
+  transform: translateY(-1px);
+}
+.btn-track:hover i {
+  transform: translateY(-2px);
+}
+.btn-track:active {
+  transform: scale(0.97);
+}
+
+/* ── Empty state ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(90, 54, 38, 0.09);
+  border: 1px solid rgba(90, 54, 38, 0.07);
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+}
+.empty-state.hidden {
+  display: none;
+}
+.empty-state i {
+  font-size: 52px;
+  color: #c4a99a;
+  margin-bottom: 18px;
+}
+.empty-state p {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: #9a7060;
+  margin-bottom: 16px;
+}
+.continue-link {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a3626;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.22s ease;
+}
+.continue-link:hover {
+  color: #3e2418;
+}
+
+/* ── Reset button ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes spinReset {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.reset-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px; /* orders: bottom-right (checkout: bottom-left) */
+  z-index: 300;
+  background: #5a3626;
+  color: #f8f3ec;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(90, 54, 38, 0.35);
+  transition:
+    background 0.28s ease,
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+  animation: fadeUp 0.5s 0.5s ease both;
+}
+.reset-btn:hover {
+  background: #3e2418;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(90, 54, 38, 0.42);
+}
+.reset-btn:active {
+  transform: scale(0.96);
+}
+.reset-btn.spinning i {
+  animation: spinReset 0.55s ease forwards;
+}
+
+/* ── Track Package overlay ── */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  65% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes trackStepIn {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 16, 0.6);
+  backdrop-filter: blur(
+    8px
+  ); /* blur backdrop — present in original orders.css */
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeDown 0.3s ease;
+}
+.overlay.hidden {
+  display: none;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.track-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 44px 40px 38px;
+  max-width: 460px;
+  width: 92%;
+  box-shadow: 0 20px 60px rgba(90, 54, 38, 0.28);
+  position: relative;
+  animation: popIn 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.track-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  background: #f8f3ec;
+  border: none;
+  border-radius: 50%;
+  color: #9a7060;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+.track-close:hover {
+  background: #5a3626;
+  color: #f8f3ec;
+  transform: rotate(90deg);
+}
+.track-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 26px;
+  color: #f8f3ec;
+  box-shadow: 0 6px 22px rgba(90, 54, 38, 0.32);
+  animation: popIn 0.5s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.track-title {
+  font-family: "Cinzel", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #5a3626;
+  text-align: center;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+.track-sub {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #9a7060;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* ── Tracking steps ── */
+.track-steps {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+.track-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 0;
+  position: relative;
+  animation: trackStepIn 0.4s ease both;
+}
+.track-step:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.track-step:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.track-step:nth-child(3) {
+  animation-delay: 0.35s;
+}
+.track-step:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* Vertical connector line between steps */
+.track-step::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 40px;
+  width: 2px;
+  height: calc(100% - 16px);
+  background: #ede4d8;
+}
+.track-step:last-child::before {
+  display: none;
+}
+
+.track-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ede4d8;
+  background: #f8f3ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #c4a99a;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+.track-step.done .track-dot {
+  background: linear-gradient(135deg, #5a3626, #7a4a34);
+  border-color: #5a3626;
+  color: #f8f3ec;
+  box-shadow: 0 2px 10px rgba(90, 54, 38, 0.3);
+}
+.track-step.active .track-dot {
+  background: #f8f3ec;
+  border-color: #5a3626;
+  color: #5a3626;
+  box-shadow: 0 0 0 4px rgba(90, 54, 38, 0.12);
+  animation: pulse 1.8s ease infinite;
+}
+
+.track-step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 6px;
+}
+.track-step-info strong {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c1a10;
+}
+.track-step-info span {
+  font-family: "Raleway", sans-serif;
+  font-size: 12.5px;
+  color: #9a7060;
+}
+.track-step.active .track-step-info strong {
+  color: #5a3626;
+}
+
+/* Close button inside the overlay */
+.track-dismiss {
+  width: 100%;
+  padding: 13px 24px;
+  background: linear-gradient(135deg, #5a3626 0%, #7a4a34 100%);
+  color: #f8f3ec;
+  border: none;
+  border-radius: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.track-dismiss::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #7a4a34, #3e2418);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.track-dismiss:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(90, 54, 38, 0.38);
+}
+.track-dismiss:hover::before {
+  opacity: 1;
+}
+.track-dismiss span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Cart toast notification ── */
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px) scale(0.95);
+  }
+}
+
+.cart-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c1a10;
+  color: #f8f3ec;
+  padding: 13px 24px;
+  border-radius: 40px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 600;
+  box-shadow: 0 8px 28px rgba(44, 26, 16, 0.35);
+  animation: toastIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.cart-toast i {
+  color: #7fc47f;
+  font-size: 16px;
+}
+.cart-toast.hidden {
+  display: none;
+}
+/* toast-out class applied by React state before hiding */
+.cart-toast.toast-out {
+  animation: toastOut 0.28s ease forwards;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .order-item {
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+  }
+  .item-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 4px;
+    border-top: 1px solid rgba(90, 54, 38, 0.07);
+  }
+  .order-meta-id {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-wrap {
+    padding: 16px 14px 32px;
+  }
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .order-meta {
+    padding: 14px 18px;
+    gap: 4px 20px;
+  }
+  .order-item {
+    padding: 18px;
+    gap: 14px;
+  }
+  .item-img-wrap {
+    width: 88px;
+    height: 88px;
+  }
+  .item-name {
+    font-size: 14px;
+  }
+  .track-box {
+    padding: 36px 24px 28px;
+  }
+  /* Collapse reset button to icon-only circle */
+  .reset-btn span {
+    display: none;
+  }
+  .reset-btn {
+    padding: 12px 14px;
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 420px) {
+  .order-item {
+    grid-template-columns: 1fr;
+  }
+  .item-img-wrap {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+  }
+}
