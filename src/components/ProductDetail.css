@@ -77,7 +77,11 @@
 
 /* ── Page ── */
 .pd-page {
-  background: #f8f3ec;
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
+  background: var(--lh-bg);
   min-height: 100vh;
   padding-top: 65px;
 }
@@ -92,12 +96,12 @@
 }
 .pd-not-found i {
   font-size: 52px;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
 }
 .pd-not-found p {
   font-family: "Cinzel", serif;
   font-size: 20px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 
 /* ── Back bar ── */
@@ -117,12 +121,12 @@
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
   font-weight: 600;
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   padding: 0;
   transition: color 0.22s;
 }
 .pd-back-btn:hover {
-  color: #5a3626;
+  color: var(--lh-accent);
   text-decoration: underline;
 }
 .pd-back-btn i {
@@ -146,12 +150,16 @@
 }
 
 .pd-main-img-wrap {
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 18px;
   overflow: hidden;
-  background: #ffffff;
-  box-shadow: 0 8px 40px rgba(90, 54, 38, 0.14);
+  background: var(--lh-surface);
+  box-shadow: 0 8px 40px var(--lh-shadow-md);
   position: relative;
 }
 /* Fix issue 2: ensure the image fills the container with cover fit — no broken display */
@@ -171,7 +179,7 @@
   top: 16px;
   left: 16px;
   background: linear-gradient(135deg, #5a3626, #7a4a34);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-family: "Cinzel", serif;
   font-size: 11px;
   font-weight: 600;
@@ -193,7 +201,7 @@
   overflow: hidden;
   border: 2.5px solid transparent;
   cursor: pointer;
-  background: #fff;
+  background: var(--lh-surface);
   flex-shrink: 0;
   transition:
     border-color 0.22s,
@@ -203,7 +211,7 @@
   transform: translateY(-2px);
 }
 .pd-thumb.active {
-  border-color: #5a3626;
+  border-color: var(--lh-accent);
 }
 /* Fix issue 2: thumbnails also use cover fit */
 .pd-thumb img {
@@ -223,14 +231,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #9a7060;
+  color: var(--lh-text-muted);
   margin-bottom: 10px;
 }
 .pd-name {
   font-family: "Cinzel", serif;
   font-size: 28px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.03em;
   line-height: 1.35;
   margin-bottom: 14px;
@@ -244,18 +252,18 @@
   flex-wrap: wrap;
 }
 .pd-stars i {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-size: 16px;
 }
 .pd-rating-count {
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 .pd-rating-link {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
@@ -275,21 +283,21 @@
   font-family: "Cinzel", serif;
   font-size: 32px;
   font-weight: 700;
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 .pd-shipping-info {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 .pd-free-shipping {
-  color: #2e7d32;
+  color: var(--lh-success);
   font-weight: 600;
 }
 
 .pd-divider {
   height: 1px;
-  background: rgba(90, 54, 38, 0.1);
+  background: var(--lh-nav-active);
   margin: 20px 0;
 }
 
@@ -299,14 +307,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #5a3626;
+  color: var(--lh-accent);
   margin-bottom: 10px;
 }
 .pd-selector-label span {
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
 }
 
 .pd-color-swatches {
@@ -330,14 +338,14 @@
   transform: scale(1.12);
 }
 .pd-swatch.selected {
-  border-color: #5a3626;
+  border-color: var(--lh-accent);
 }
 .pd-swatch.selected::after {
   content: "";
   position: absolute;
   inset: -5px;
   border-radius: 50%;
-  border: 1.5px solid rgba(90, 54, 38, 0.4);
+  border: 1.5px solid var(--lh-border-mid);
 }
 
 .pd-size-pills {
@@ -347,14 +355,18 @@
   margin-bottom: 20px;
 }
 .pd-size-pill {
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
   padding: 8px 18px;
   border-radius: 8px;
-  border: 1.5px solid rgba(90, 54, 38, 0.2);
+  border: 1.5px solid var(--lh-border-mid);
   font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #2c1a10;
-  background: #fff;
+  color: var(--lh-text-primary);
+  background: var(--lh-surface);
   cursor: pointer;
   transition:
     border-color 0.22s,
@@ -362,12 +374,12 @@
     color 0.22s;
 }
 .pd-size-pill:hover {
-  border-color: #5a3626;
+  border-color: var(--lh-accent);
 }
 .pd-size-pill.selected {
-  border-color: #5a3626;
-  background: #5a3626;
-  color: #f8f3ec;
+  border-color: var(--lh-accent);
+  background: var(--lh-accent);
+  color: var(--lh-accent-text);
 }
 .pd-size-pill.unavailable {
   opacity: 0.38;
@@ -383,13 +395,17 @@
   flex-wrap: wrap;
 }
 .pd-qty-select {
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
   padding: 10px 14px;
-  border: 1.5px solid rgba(90, 54, 38, 0.22);
+  border: 1.5px solid var(--lh-border-mid);
   border-radius: 10px;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  color: #2c1a10;
-  background: #fff;
+  color: var(--lh-text-primary);
+  background: var(--lh-surface);
   outline: none;
   cursor: pointer;
   transition:
@@ -397,13 +413,13 @@
     box-shadow 0.22s;
 }
 .pd-qty-select:focus {
-  border-color: #5a3626;
-  box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.1);
+  border-color: var(--lh-accent);
+  box-shadow: 0 0 0 3px var(--lh-input-focus);
 }
 .pd-delivery-badge {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: #2e7d32;
+  color: var(--lh-success);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -418,7 +434,7 @@
   flex: 1;
   padding: 15px 20px;
   background: linear-gradient(135deg, #5a3626, #7a4a34);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   border: none;
   border-radius: 12px;
   font-family: "Cinzel", serif;
@@ -445,11 +461,15 @@
 }
 
 .pd-fav-btn {
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  border: 1.5px solid rgba(90, 54, 38, 0.22);
-  background: #fff;
+  border: 1.5px solid var(--lh-border-mid);
+  background: var(--lh-surface);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -462,15 +482,15 @@
 }
 .pd-fav-btn i {
   font-size: 18px;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
   transition: color 0.22s;
 }
 .pd-fav-btn.active {
-  background: #5a3626;
-  border-color: #5a3626;
+  background: var(--lh-accent);
+  border-color: var(--lh-accent);
 }
 .pd-fav-btn.active i {
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
 }
 .pd-fav-btn:hover {
   transform: scale(1.08);
@@ -491,20 +511,20 @@
   gap: 10px;
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 .pd-feature-item i {
   font-size: 14px;
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   width: 16px;
 }
 
 .pd-accordion {
-  border-top: 1px solid rgba(90, 54, 38, 0.1);
+  border-top: 1px solid var(--lh-border);
   margin-top: 20px;
 }
 .pd-accordion-item {
-  border-bottom: 1px solid rgba(90, 54, 38, 0.1);
+  border-bottom: 1px solid var(--lh-border);
 }
 .pd-accordion-trigger {
   width: 100%;
@@ -518,16 +538,16 @@
   font-family: "Cinzel", serif;
   font-size: 13.5px;
   font-weight: 600;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
   transition: color 0.22s;
 }
 .pd-accordion-trigger:hover {
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 .pd-accordion-trigger i {
   font-size: 12px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
   transition: transform 0.28s;
 }
 .pd-accordion-trigger.open i {
@@ -538,7 +558,7 @@
   padding-bottom: 16px;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  color: #5a3626;
+  color: var(--lh-accent);
   line-height: 1.8;
   animation: fadeIn 0.28s ease both;
 }
@@ -557,7 +577,7 @@
   font-family: "Cinzel", serif;
   font-size: 24px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
@@ -572,22 +592,22 @@
   font-family: "Cinzel", serif;
   font-size: 52px;
   font-weight: 700;
-  color: #5a3626;
+  color: var(--lh-accent);
   line-height: 1;
 }
 .pd-reviews-avg-label {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 .pd-reviews-count {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
   margin-top: 4px;
 }
 .pd-reviews-stars i {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-size: 22px;
 }
 
@@ -597,11 +617,15 @@
   gap: 20px;
 }
 .pd-review-card {
-  background: #fff;
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
+  background: var(--lh-surface);
   border-radius: 14px;
   padding: 22px 20px;
-  border: 1px solid rgba(90, 54, 38, 0.08);
-  box-shadow: 0 2px 12px rgba(90, 54, 38, 0.07);
+  border: 1px solid var(--lh-border);
+  box-shadow: 0 2px 12px var(--lh-shadow-sm);
   animation: reviewIn 0.4s ease both;
 }
 .pd-review-header {
@@ -615,7 +639,7 @@
   height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, #5a3626, #7a4a34);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-family: "Cinzel", serif;
   font-size: 16px;
   font-weight: 700;
@@ -628,28 +652,28 @@
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
 }
 .pd-reviewer-date {
   font-family: "Raleway", sans-serif;
   font-size: 12px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 .pd-review-stars i {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-size: 13px;
 }
 .pd-review-title {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   margin: 8px 0 6px;
 }
 .pd-review-body {
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
-  color: #7a5a4a;
+  color: var(--lh-text-muted);
   line-height: 1.7;
 }
 .pd-verified {
@@ -659,7 +683,7 @@
   margin-top: 10px;
   font-family: "Raleway", sans-serif;
   font-size: 12px;
-  color: #2e7d32;
+  color: var(--lh-success);
   font-weight: 600;
 }
 
@@ -673,7 +697,7 @@
   font-family: "Cinzel", serif;
   font-size: 22px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
   margin-bottom: 22px;
 }
@@ -686,11 +710,15 @@
 }
 
 .pd-rv-card {
-  background: #fff;
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    color var(--lh-transition);
+  background: var(--lh-surface);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(90, 54, 38, 0.08);
-  box-shadow: 0 2px 12px rgba(90, 54, 38, 0.07);
+  border: 1px solid var(--lh-border);
+  box-shadow: 0 2px 12px var(--lh-shadow-sm);
   cursor: pointer;
   transition:
     box-shadow 0.28s,
@@ -698,7 +726,7 @@
   animation: fadeUp 0.4s ease both;
 }
 .pd-rv-card:hover {
-  box-shadow: 0 10px 30px rgba(90, 54, 38, 0.15);
+  box-shadow: 0 10px 30px var(--lh-shadow-md);
   transform: translateY(-4px);
 }
 
@@ -707,7 +735,7 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #f8f3ec;
+  background: var(--lh-bg);
 }
 .pd-rv-img {
   width: 100%;
@@ -727,7 +755,7 @@
   font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   margin-bottom: 6px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -738,7 +766,7 @@
   font-family: "Cinzel", serif;
   font-size: 15px;
   font-weight: 700;
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 
 /* ── Toast ── */
@@ -747,8 +775,8 @@
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2c1a10;
-  color: #f8f3ec;
+  background: var(--lh-text-primary);
+  color: var(--lh-accent-text);
   padding: 13px 22px;
   border-radius: 40px;
   font-family: "Raleway", sans-serif;
