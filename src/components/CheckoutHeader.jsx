@@ -1,14 +1,20 @@
 /**
- * CheckoutHeader.jsx
+ * CheckoutHeader.jsx  (UPDATED)
  *
- * Checkout page header.
- * Converted from static HTML + checkout.js DOM manipulation to React props:
- *   - itemCount  {number}  – total cart item count shown in the badge
- *   - onToggleSummary {fn} – called when the receipt icon button is clicked
- *                            (opens the mobile payment summary drawer)
+ * Changes from original:
+ *  - Imports ThemeToggle (compact variant) and places it between
+ *    the item count badge and the receipt icon button.
+ *
+ * Placement rationale:
+ *  The checkout header is intentionally minimal — no full nav,
+ *  just brand + heading + two utility icons. A compact toggle
+ *  (icon + pill only, no text) fits the space without crowding.
+ *  Users completing a purchase expect to stay focused; the toggle
+ *  is available but visually quiet.
  */
 
 import { Link } from "react-router";
+import { ThemeToggle } from "./ThemeToggle";
 import "./CheckoutHeader.css";
 
 export function CheckoutHeader({ itemCount = 0, onToggleSummary }) {
@@ -17,7 +23,7 @@ export function CheckoutHeader({ itemCount = 0, onToggleSummary }) {
   return (
     <header className="header">
       <div className="header-inner">
-        {/* Brand logo — navigates back to the product listing page */}
+        {/* Brand logo */}
         <Link to="/" className="brand">
           <img
             src="../images/logo/Luxury-Hijabi_Brand-Logo-4.png"
@@ -28,21 +34,28 @@ export function CheckoutHeader({ itemCount = 0, onToggleSummary }) {
 
         <div className="header-center">
           <h1 className="checkout-heading">Checkout</h1>
-          {/* Live item count badge — updated via props from Checkout.jsx */}
           <span className="item-count-badge" id="headerBadge">
             {label}
           </span>
         </div>
 
-        {/* Receipt icon — opens the mobile payment summary drawer */}
-        <button
-          className="icon-btn"
-          id="summaryToggleBtn"
-          aria-label="Toggle payment summary"
-          onClick={onToggleSummary}
-        >
-          <i className="fa-solid fa-receipt" />
-        </button>
+        {/* Right-side actions */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          {/* ── Theme Toggle — compact variant ──
+              Icon + pill only. Sits before the receipt button so the
+              rightmost element is still the primary action (summary). */}
+          <ThemeToggle variant="compact" />
+
+          {/* Receipt / summary toggle button (mobile) */}
+          <button
+            className="icon-btn"
+            id="summaryToggleBtn"
+            aria-label="Toggle payment summary"
+            onClick={onToggleSummary}
+          >
+            <i className="fa-solid fa-receipt" />
+          </button>
+        </div>
       </div>
     </header>
   );

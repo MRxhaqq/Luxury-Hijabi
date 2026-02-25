@@ -1,0 +1,192 @@
+/* ============================================================
+   LUXURY HIJABI — ThemeToggle.css
+   Reusable dark/light mode toggle pill.
+   Used in every header across the app.
+
+   Variants:
+     .theme-toggle           — default (used in ProductDisplayHeader desktop nav)
+     .theme-toggle.compact   — icon-only pill (used in Checkout/Orders headers)
+     .theme-toggle.drawer    — full-width row style (used inside mobile drawers)
+   ============================================================ */
+
+/* ── Base toggle button ── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(248, 243, 236, 0.12);
+  border: 1px solid rgba(248, 243, 236, 0.22);
+  border-radius: 24px;
+  padding: 6px 12px 6px 8px;
+  cursor: pointer;
+  color: #f8f3ec;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(248, 243, 236, 0.22);
+  border-color: rgba(248, 243, 236, 0.4);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid rgba(248, 243, 236, 0.6);
+  outline-offset: 2px;
+}
+
+/* ── Toggle pill track + thumb ── */
+.theme-toggle-track {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  border-radius: 10px;
+  background: rgba(248, 243, 236, 0.2);
+  flex-shrink: 0;
+  transition: background 0.28s ease;
+}
+
+.theme-toggle[data-on="true"] .theme-toggle-track {
+  background: rgba(248, 243, 236, 0.45);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f8f3ec;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle[data-on="true"] .theme-toggle-thumb {
+  transform: translateX(14px);
+}
+
+/* Icon inside the toggle */
+.theme-toggle-icon {
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+  transform: rotate(20deg);
+}
+
+/* Label text (hidden in compact mode) */
+.theme-toggle-label {
+  font-family: "Cinzel", serif;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+/* ── COMPACT variant — icon + pill only, no text ──
+   Used in space-constrained headers (Checkout, Orders) */
+.theme-toggle.compact {
+  padding: 6px 8px;
+  gap: 6px;
+}
+
+.theme-toggle.compact .theme-toggle-label {
+  display: none;
+}
+
+/* ── DRAWER variant — full-width row inside mobile drawers ──
+   Looks like other drawer nav items but includes the pill on the right */
+.theme-toggle.drawer {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(248, 243, 236, 0.15);
+  background: rgba(248, 243, 236, 0.07);
+  padding: 13px 16px;
+  gap: 12px;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.theme-toggle.drawer:hover {
+  background: rgba(248, 243, 236, 0.15);
+  border-color: rgba(248, 243, 236, 0.3);
+  transform: none;
+}
+
+.theme-toggle.drawer .theme-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle.drawer .theme-toggle-label {
+  display: inline;
+  font-size: 14px;
+}
+
+/* ── PROFILE SIDEBAR variant — matches sidebar nav item style ──
+   Used inside Profile.jsx sidebar, replaces the old prof-theme-toggle */
+.theme-toggle.sidebar {
+  width: 100%;
+  border-radius: 10px;
+  background: var(--lh-nav-hover);
+  border: 1px solid transparent;
+  padding: 11px 16px;
+  gap: 12px;
+  color: var(--lh-text-primary);
+  font-size: 14px;
+  font-family: "Raleway", sans-serif;
+  letter-spacing: 0;
+  justify-content: space-between;
+}
+
+.theme-toggle.sidebar:hover {
+  background: var(--lh-nav-hover);
+  border-color: var(--lh-border-mid);
+  transform: none;
+}
+
+.theme-toggle.sidebar:focus-visible {
+  outline: 2px solid var(--lh-accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle.sidebar .theme-toggle-track {
+  background: var(--lh-toggle-off);
+}
+
+.theme-toggle.sidebar[data-on="true"] .theme-toggle-track {
+  background: var(--lh-toggle-on);
+}
+
+.theme-toggle.sidebar .theme-toggle-thumb {
+  background: var(--lh-toggle-thumb);
+}
+
+.theme-toggle.sidebar .theme-toggle-icon {
+  color: var(--lh-text-secondary);
+  font-size: 15px;
+}
+
+.theme-toggle.sidebar .theme-toggle-label {
+  color: var(--lh-text-primary);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.theme-toggle.sidebar .theme-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

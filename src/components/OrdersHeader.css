@@ -14,8 +14,8 @@ html {
 }
 body {
   font-family: "Raleway", sans-serif;
-  background: #f8f3ec;
-  color: #2c1a10;
+  background: var(--lh-bg);
+  color: var(--lh-text-primary);
   min-height: 100vh;
 }
 
@@ -163,7 +163,7 @@ body {
   left: 0;
   right: 0;
   height: 64px;
-  background: #5a3626;
+  background: var(--lh-accent);
   z-index: 200;
   box-shadow: 0 2px 20px rgba(90, 54, 38, 0.3);
   animation: fadeDown 0.45s ease both;
@@ -200,7 +200,7 @@ body {
   font-family: "Cinzel", serif;
   font-size: 17px;
   font-weight: 700;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.06em;
 }
 
@@ -216,14 +216,14 @@ body {
   font-family: "Cinzel", serif;
   font-size: 19px;
   font-weight: 600;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.06em;
   white-space: nowrap;
 }
 .oh-badge {
-  background: rgba(248, 243, 236, 0.18);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.3);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-family: "Raleway", sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -245,13 +245,13 @@ body {
   gap: 7px;
   padding: 7px 14px;
   border-radius: 8px;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   text-decoration: none;
   font-family: "Cinzel", serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  background: rgba(248, 243, 236, 0.1);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.18);
   transition:
     background 0.25s,
@@ -259,12 +259,12 @@ body {
   white-space: nowrap;
 }
 .oh-nav-link:hover {
-  background: rgba(248, 243, 236, 0.22);
+  background: var(--lh-nav-active);
   transform: translateY(-1px);
 }
 .oh-cart-count {
-  background: #c4a99a;
-  color: #2c1a10;
+  background: var(--lh-accent-secondary);
+  color: var(--lh-text-primary);
   font-family: "Raleway", sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -298,12 +298,12 @@ body {
   z-index: 201;
 }
 .oh-hamburger:hover {
-  border-color: #f8f3ec;
+  border-color: var(--lh-accent-text);
 }
 .oh-hamburger span {
   display: block;
   height: 2px;
-  background: #f8f3ec;
+  background: var(--lh-bg);
   border-radius: 2px;
   transition:
     transform 0.32s ease,
@@ -350,7 +350,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: #5a3626;
+  background: var(--lh-accent);
   z-index: 199;
   padding: 70px 18px 22px;
   flex-direction: column;
@@ -378,7 +378,7 @@ body {
   font-family: "Cinzel", serif;
   font-size: 17px;
   font-weight: 700;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.05em;
 }
 
@@ -395,8 +395,8 @@ body {
   padding: 13px 16px;
   border-radius: 10px;
   border: 1px solid rgba(248, 243, 236, 0.15);
-  background: rgba(248, 243, 236, 0.07);
-  color: #f8f3ec;
+  background: var(--lh-nav-hover);
+  color: var(--lh-accent-text);
   text-decoration: none;
   font-family: "Cinzel", serif;
   font-size: 14px;
@@ -406,13 +406,13 @@ body {
     border-color 0.22s;
 }
 .oh-drawer-link:hover {
-  background: rgba(248, 243, 236, 0.16);
+  background: var(--lh-nav-hover);
   border-color: rgba(248, 243, 236, 0.3);
 }
 .oh-drawer-cart-badge {
   margin-left: auto;
   background: rgba(196, 169, 154, 0.85);
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   font-family: "Raleway", sans-serif;
   font-size: 12px;
   font-weight: 700;

@@ -1,0 +1,214 @@
+/* ============================================================
+   LUXURY HIJABI — theme.css
+   Global CSS custom property system for dark/light theming.
+
+   Previously these variables lived in Profile.css and only
+   affected the Profile page. Moving them here means every page
+   in the app — ProductDisplay, Checkout, Orders, Favorites,
+   Login, etc. — can consume them and respond to data-theme changes.
+
+   HOW TO USE:
+   Import this file ONCE in your root entry point, e.g. main.jsx:
+     import "./theme.css";
+
+   Every component can then use var(--lh-*) tokens freely.
+   The [data-theme="dark"] block on <html> flips all values in
+   one CSS cascade pass — no JavaScript touches individual elements.
+
+   FLASH-OF-WRONG-THEME (FOWT) prevention:
+   Add this inline script as the VERY FIRST child of <head> in
+   your public/index.html, before any CSS loads:
+
+   <script>
+     (function () {
+       var stored = localStorage.getItem('lh_theme_v1');
+       var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+       var theme = stored || (prefersDark ? 'dark' : 'light');
+       document.documentElement.setAttribute('data-theme', theme);
+     })();
+   </script>
+   ============================================================ */
+
+/* ── LIGHT THEME (default) ── */
+:root {
+  /* Page & surface backgrounds */
+  --lh-bg:              #f8f3ec;
+  --lh-surface:         #ffffff;
+  --lh-surface-alt:     #faf7f3;
+  --lh-surface-raised:  #ffffff;
+
+  /* Text */
+  --lh-text-primary:    #2c1a10;
+  --lh-text-secondary:  #5a3626;
+  --lh-text-muted:      #9a7060;
+  --lh-text-placeholder:#c4a99a;
+
+  /* Borders */
+  --lh-border:          rgba(90, 54, 38, 0.08);
+  --lh-border-mid:      rgba(90, 54, 38, 0.14);
+  --lh-border-strong:   rgba(90, 54, 38, 0.22);
+
+  /* Shadows */
+  --lh-shadow-sm:       rgba(90, 54, 38, 0.07);
+  --lh-shadow-md:       rgba(90, 54, 38, 0.12);
+
+  /* Primary accent (brand brown) */
+  --lh-accent:          #5a3626;
+  --lh-accent-hover:    #7a4a34;
+  --lh-accent-deep:     #3a2016;
+  --lh-accent-text:     #f8f3ec;
+
+  /* Secondary accent (warm beige) */
+  --lh-accent-secondary:  #c4a99a;
+  --lh-accent-sec-hover:  #d4b9aa;
+
+  /* Hero gradient */
+  --lh-hero-a:          #3a2016;
+  --lh-hero-b:          #5a3626;
+  --lh-hero-c:          #7a4a34;
+
+  /* Card header icon */
+  --lh-icon-accent:     #7a4a34;
+
+  /* Inputs */
+  --lh-input-bg:        #ffffff;
+  --lh-input-border:    rgba(90, 54, 38, 0.18);
+  --lh-input-focus:     rgba(90, 54, 38, 0.1);
+
+  /* Navigation interactive states */
+  --lh-nav-hover:       rgba(90, 54, 38, 0.06);
+  --lh-nav-active:      rgba(90, 54, 38, 0.1);
+  --lh-nav-danger-hover:rgba(185, 64, 64, 0.07);
+
+  /* Toggle pill */
+  --lh-toggle-off:      rgba(90, 54, 38, 0.18);
+  --lh-toggle-on:       #5a3626;
+  --lh-toggle-thumb:    #ffffff;
+  --lh-toggle-focus:    rgba(90, 54, 38, 0.28);
+
+  /* Semantic colours */
+  --lh-success:         #2e7d32;
+  --lh-success-bg:      rgba(46, 125, 50, 0.08);
+  --lh-success-border:  rgba(46, 125, 50, 0.28);
+  --lh-error:           #b94040;
+  --lh-error-bg:        rgba(185, 64, 64, 0.09);
+  --lh-error-border:    rgba(185, 64, 64, 0.3);
+  --lh-warn:            #c4820a;
+
+  /* Transition speed token */
+  --lh-transition:      0.32s ease;
+}
+
+/* ── DARK THEME ── */
+[data-theme="dark"] {
+  --lh-bg:              #130b07;
+  --lh-surface:         #1e1009;
+  --lh-surface-alt:     #2c1a10;
+  --lh-surface-raised:  #251510;
+
+  --lh-text-primary:    #f8f3ec;
+  --lh-text-secondary:  #c4a99a;
+  --lh-text-muted:      #9a7060;
+  --lh-text-placeholder:#6a4a3a;
+
+  --lh-border:          rgba(196, 169, 154, 0.1);
+  --lh-border-mid:      rgba(196, 169, 154, 0.16);
+  --lh-border-strong:   rgba(196, 169, 154, 0.26);
+
+  --lh-shadow-sm:       rgba(0, 0, 0, 0.28);
+  --lh-shadow-md:       rgba(0, 0, 0, 0.45);
+
+  --lh-accent:          #c4a99a;
+  --lh-accent-hover:    #d4b9aa;
+  --lh-accent-deep:     #b49080;
+  --lh-accent-text:     #130b07;
+
+  --lh-accent-secondary: #7a5a4a;
+  --lh-accent-sec-hover: #8a6a5a;
+
+  --lh-hero-a:          #0a0503;
+  --lh-hero-b:          #1e1009;
+  --lh-hero-c:          #2c1a10;
+
+  --lh-icon-accent:     #c4a99a;
+
+  --lh-input-bg:        #2c1a10;
+  --lh-input-border:    rgba(196, 169, 154, 0.2);
+  --lh-input-focus:     rgba(196, 169, 154, 0.14);
+
+  --lh-nav-hover:       rgba(196, 169, 154, 0.08);
+  --lh-nav-active:      rgba(196, 169, 154, 0.14);
+  --lh-nav-danger-hover:rgba(185, 64, 64, 0.14);
+
+  --lh-toggle-off:      rgba(196, 169, 154, 0.18);
+  --lh-toggle-on:       #c4a99a;
+  --lh-toggle-thumb:    #130b07;
+  --lh-toggle-focus:    rgba(196, 169, 154, 0.32);
+
+  --lh-success:         #4caf50;
+  --lh-success-bg:      rgba(76, 175, 80, 0.1);
+  --lh-success-border:  rgba(76, 175, 80, 0.3);
+  --lh-error:           #ef5350;
+  --lh-error-bg:        rgba(239, 83, 80, 0.1);
+  --lh-error-border:    rgba(239, 83, 80, 0.32);
+  --lh-warn:            #ffb74d;
+}
+
+/* ── SYSTEM PREFERENCE FALLBACK ──
+   If user has never made a manual choice (no data-theme on <html>),
+   honour their OS dark mode preference automatically. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --lh-bg:              #130b07;
+    --lh-surface:         #1e1009;
+    --lh-surface-alt:     #2c1a10;
+    --lh-surface-raised:  #251510;
+    --lh-text-primary:    #f8f3ec;
+    --lh-text-secondary:  #c4a99a;
+    --lh-text-muted:      #9a7060;
+    --lh-text-placeholder:#6a4a3a;
+    --lh-border:          rgba(196, 169, 154, 0.1);
+    --lh-border-mid:      rgba(196, 169, 154, 0.16);
+    --lh-border-strong:   rgba(196, 169, 154, 0.26);
+    --lh-shadow-sm:       rgba(0, 0, 0, 0.28);
+    --lh-shadow-md:       rgba(0, 0, 0, 0.45);
+    --lh-accent:          #c4a99a;
+    --lh-accent-hover:    #d4b9aa;
+    --lh-accent-deep:     #b49080;
+    --lh-accent-text:     #130b07;
+    --lh-accent-secondary:#7a5a4a;
+    --lh-accent-sec-hover:#8a6a5a;
+    --lh-hero-a:          #0a0503;
+    --lh-hero-b:          #1e1009;
+    --lh-hero-c:          #2c1a10;
+    --lh-icon-accent:     #c4a99a;
+    --lh-input-bg:        #2c1a10;
+    --lh-input-border:    rgba(196, 169, 154, 0.2);
+    --lh-input-focus:     rgba(196, 169, 154, 0.14);
+    --lh-nav-hover:       rgba(196, 169, 154, 0.08);
+    --lh-nav-active:      rgba(196, 169, 154, 0.14);
+    --lh-nav-danger-hover:rgba(185, 64, 64, 0.14);
+    --lh-toggle-off:      rgba(196, 169, 154, 0.18);
+    --lh-toggle-on:       #c4a99a;
+    --lh-toggle-thumb:    #130b07;
+    --lh-toggle-focus:    rgba(196, 169, 154, 0.32);
+    --lh-success:         #4caf50;
+    --lh-success-bg:      rgba(76, 175, 80, 0.1);
+    --lh-success-border:  rgba(76, 175, 80, 0.3);
+    --lh-error:           #ef5350;
+    --lh-error-bg:        rgba(239, 83, 80, 0.1);
+    --lh-error-border:    rgba(239, 83, 80, 0.32);
+    --lh-warn:            #ffb74d;
+  }
+}
+
+/* ── Global page background transition ──
+   Smooth colour shift on any page when theme toggles. */
+html,
+body {
+  background-color: var(--lh-bg);
+  color: var(--lh-text-primary);
+  transition:
+    background-color var(--lh-transition),
+    color var(--lh-transition);
+}

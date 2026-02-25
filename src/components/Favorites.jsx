@@ -1,11 +1,10 @@
 /**
- * Favorites.jsx
+ * Favorites.jsx  (UPDATED)
  *
- * Favorites page — shows all items the logged-in user has saved.
- * Allows the user to remove items from favorites or add them to cart.
- *
- * Guards: only accessible to logged-in users. If not logged in,
- * the user is redirected to the Login page (handled via router guard).
+ * Changes from original:
+ *  - Imports ThemeToggle and renders it:
+ *      Desktop nav  → compact variant between Cart and Sign out
+ *      Mobile drawer → drawer variant as a full-width nav row
  */
 
 import { useState, useCallback, useRef, useEffect } from "react";
@@ -13,6 +12,7 @@ import { Link, useNavigate } from "react-router";
 import { FavoritesStore } from "../utils/favoritesStore";
 import { CartStore } from "../utils/cartStore";
 import { AuthStore } from "../utils/authStore";
+import { ThemeToggle } from "./ThemeToggle";
 import "./Favorites.css";
 
 // ─── Star Rating ──────────────────────────────────────────────────────────────
@@ -45,7 +45,6 @@ function FavCard({ product, onRemove, onAddToCart, isRemoving }) {
   }
 
   function handleRemove() {
-    // Small heartbeat animation before removal
     setBeatingRemove(true);
     setTimeout(() => onRemove(product.id), 150);
   }
@@ -80,7 +79,6 @@ function FavCard({ product, onRemove, onAddToCart, isRemoving }) {
       <div className="fav-card-body">
         <p className="fav-card-name">{product.name}</p>
 
-        {/* Star rating */}
         {product.rating && (
           <div className="fav-card-rating">
             <div className="fav-card-stars">
@@ -128,10 +126,8 @@ export function Favorites() {
   });
   const toastTimerRef = useRef(null);
 
-  /* p3 fix — hamburger drawer state for mobile */
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  /* Lock body scroll while drawer is open */
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? "hidden" : "";
     return () => {
@@ -139,7 +135,6 @@ export function Favorites() {
     };
   }, [drawerOpen]);
 
-  /* Close drawer on Escape */
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") setDrawerOpen(false);
@@ -160,7 +155,6 @@ export function Favorites() {
     }, 2800);
   }, []);
 
-  // ── Remove from favorites ──────────────────────────────────────────────────
   function handleRemove(id) {
     setRemovingIds((prev) => new Set([...prev, id]));
     setTimeout(() => {
@@ -171,10 +165,9 @@ export function Favorites() {
         next.delete(id);
         return next;
       });
-    }, 520); // matches cardSlideOut animation duration
+    }, 520);
   }
 
-  // ── Add to cart from favorites ──────────────────────────────────────────────
   function handleAddToCart(product) {
     CartStore.addItem(product, 1);
     setCartCount(CartStore.getTotalCount());
@@ -215,6 +208,10 @@ export function Favorites() {
               <i className="fa-solid fa-cart-shopping" />
               <span>Cart {cartCount > 0 && `(${cartCount})`}</span>
             </Link>
+
+            {/* ── Theme Toggle — compact variant in desktop nav ── */}
+            <ThemeToggle variant="compact" />
+
             <button
               className="fav-nav-link"
               onClick={() => {
@@ -227,7 +224,7 @@ export function Favorites() {
             </button>
           </nav>
 
-          {/* Hamburger button — only visible on mobile (p3 fix) */}
+          {/* Hamburger button — only visible on mobile */}
           <button
             className={`fav-menu-toggle${drawerOpen ? " open" : ""}`}
             aria-label="Toggle menu"
@@ -241,7 +238,7 @@ export function Favorites() {
         </div>
       </header>
 
-      {/* Mobile drawer — slides down on mobile when hamburger is tapped */}
+      {/* Mobile drawer */}
       <div className={`fav-nav-drawer${drawerOpen ? " open" : ""}`}>
         <Link
           to="/orders"
@@ -263,6 +260,9 @@ export function Favorites() {
             <span className="fav-drawer-badge">{cartCount}</span>
           )}
         </Link>
+
+        {/* ── Theme Toggle — drawer variant in mobile drawer ── */}
+        <ThemeToggle variant="drawer" />
 
         <button
           className="fav-drawer-btn"
@@ -289,7 +289,6 @@ export function Favorites() {
           )}
         </div>
 
-        {/* Favorites grid */}
         {!isEmpty ? (
           <div className="fav-grid">
             {favorites.map((product, i) => (
@@ -303,7 +302,6 @@ export function Favorites() {
             ))}
           </div>
         ) : (
-          /* Empty state */
           <div className="fav-empty">
             <div className="fav-empty-icon">
               <i className="fa-regular fa-heart" />

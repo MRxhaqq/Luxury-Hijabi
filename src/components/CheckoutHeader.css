@@ -17,8 +17,8 @@ html {
 }
 body {
   font-family: "Raleway", sans-serif;
-  background: #f8f3ec;
-  color: #2c1a10;
+  background: var(--lh-bg);
+  color: var(--lh-text-primary);
   min-height: 100vh;
   /* 68px header + 46px progress strip = 114px clearance */
   padding-top: 0;
@@ -131,7 +131,7 @@ body {
   left: 0;
   right: 0;
   height: 68px;
-  background: #5a3626;
+  background: var(--lh-accent);
   z-index: 200;
   box-shadow: 0 2px 20px rgba(90, 54, 38, 0.3);
   animation: fadeDown 0.45s ease both;
@@ -176,13 +176,13 @@ body {
   font-family: "Cinzel", serif;
   font-size: 22px;
   font-weight: 600;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.05em;
 }
 .item-count-badge {
-  background: rgba(248, 243, 236, 0.18);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.3);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-family: "Raleway", sans-serif;
   font-size: 12.5px;
   font-weight: 500;
@@ -195,10 +195,10 @@ body {
 .icon-btn {
   width: 38px;
   height: 38px;
-  background: rgba(248, 243, 236, 0.14);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.25);
   border-radius: 50%;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-size: 15px;
   cursor: pointer;
   display: flex;
@@ -210,7 +210,7 @@ body {
     transform 0.28s ease;
 }
 .icon-btn:hover {
-  background: rgba(248, 243, 236, 0.28);
+  background: var(--lh-nav-active);
   transform: scale(1.08);
 }
 
@@ -224,12 +224,12 @@ body {
   background: #ede4d8;
   z-index: 190;
   padding: 8px 24px 6px;
-  border-bottom: 1px solid rgba(90, 54, 38, 0.08);
+  border-bottom: 1px solid var(--lh-border);
   animation: fadeDown 0.45s 0.05s ease both;
 }
 .progress-track {
   height: 3px;
-  background: rgba(90, 54, 38, 0.12);
+  background: var(--lh-nav-active);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -251,14 +251,14 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
 }
 .prog-step.active {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-weight: 700;
 }
 .prog-step.done {
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
 }
 
 /* ── Responsive ── */

@@ -122,7 +122,7 @@
   left: 0;
   right: 0;
   height: 68px;
-  background: #5a3626;
+  background: var(--lh-accent);
   z-index: 200;
   box-shadow: 0 2px 20px rgba(90, 54, 38, 0.3);
   animation: fadeDown 0.45s ease both;
@@ -180,14 +180,14 @@
   font-family: "Cinzel", serif;
   font-size: 20px;
   font-weight: 600;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.06em;
 }
 
 .fav-count-badge {
-  background: rgba(248, 243, 236, 0.18);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.3);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   font-family: "Raleway", sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -209,13 +209,13 @@
   gap: 7px;
   padding: 8px 14px;
   border-radius: 8px;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   text-decoration: none;
   font-family: "Cinzel", serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  background: rgba(248, 243, 236, 0.1);
+  background: var(--lh-nav-hover);
   border: 1px solid rgba(248, 243, 236, 0.18);
   transition:
     background 0.28s ease,
@@ -223,7 +223,7 @@
 }
 
 .fav-nav-link:hover {
-  background: rgba(248, 243, 236, 0.22);
+  background: var(--lh-nav-active);
   transform: translateY(-1px);
 }
 
@@ -246,14 +246,14 @@
   font-family: "Cinzel", serif;
   font-size: 28px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
 }
 
 .fav-page-count {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 
 /* ── Grid of favorite cards ── */
@@ -265,10 +265,15 @@
 
 /* ── Individual favorite card ── */
 .fav-card {
-  background: #ffffff;
+  transition:
+    background-color var(--lh-transition),
+    border-color var(--lh-transition),
+    box-shadow var(--lh-transition);
+
+  background: var(--lh-surface);
   border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(90, 54, 38, 0.09);
-  border: 1px solid rgba(90, 54, 38, 0.07);
+  box-shadow: 0 4px 24px var(--lh-shadow-sm);
+  border: 1px solid var(--lh-border);
   overflow: hidden;
   transition:
     box-shadow 0.3s ease,
@@ -292,7 +297,7 @@
 .fav-card-img-wrap {
   height: 220px;
   overflow: hidden;
-  background: #f8f3ec;
+  background: var(--lh-bg);
 }
 
 .fav-card-img {
@@ -314,7 +319,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(248, 243, 236, 0.92);
+  background: var(--lh-surface-alt);
   border: none;
   cursor: pointer;
   display: flex;
@@ -329,12 +334,12 @@
 
 .fav-remove-btn i {
   font-size: 15px;
-  color: #b94040;
+  color: var(--lh-error);
   transition: color 0.22s;
 }
 
 .fav-remove-btn:hover {
-  background: #b94040;
+  background: var(--lh-error);
   transform: scale(1.1);
 }
 
@@ -356,7 +361,7 @@
   font-family: "Raleway", sans-serif;
   font-size: 14.5px;
   font-weight: 500;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   line-height: 1.45;
   margin-bottom: 8px;
   display: -webkit-box;
@@ -375,21 +380,21 @@
 }
 
 .fav-card-stars i {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-size: 13px;
 }
 
 .fav-card-rating-count {
   font-family: "Raleway", sans-serif;
   font-size: 12.5px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 
 .fav-card-price {
   font-family: "Cinzel", serif;
   font-size: 18px;
   font-weight: 700;
-  color: #5a3626;
+  color: var(--lh-accent);
   margin-bottom: 14px;
 }
 
@@ -398,7 +403,7 @@
   width: 100%;
   padding: 10px 16px;
   background: linear-gradient(135deg, #5a3626, #7a4a34);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   border: none;
   border-radius: 8px;
   font-family: "Cinzel", serif;
@@ -423,7 +428,7 @@
 }
 
 .fav-add-btn.btn-added {
-  background: #2e7d32;
+  background: var(--lh-success);
   box-shadow: 0 6px 18px rgba(46, 125, 50, 0.3);
 }
 
@@ -443,7 +448,7 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: rgba(90, 54, 38, 0.07);
+  background: var(--lh-nav-hover);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -452,20 +457,20 @@
 
 .fav-empty-icon i {
   font-size: 38px;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
 }
 
 .fav-empty-title {
   font-family: "Cinzel", serif;
   font-size: 22px;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
 }
 
 .fav-empty-sub {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
   max-width: 340px;
   line-height: 1.7;
 }
@@ -475,8 +480,8 @@
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: #5a3626;
-  color: #f8f3ec;
+  background: var(--lh-accent);
+  color: var(--lh-accent-text);
   border-radius: 8px;
   text-decoration: none;
   font-family: "Cinzel", serif;
@@ -489,7 +494,7 @@
 }
 
 .fav-shop-link:hover {
-  background: #7a4a34;
+  background: var(--lh-accent-hover);
   transform: translateY(-2px);
 }
 
@@ -521,8 +526,8 @@
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2c1a10;
-  color: #f8f3ec;
+  background: var(--lh-text-primary);
+  color: var(--lh-accent-text);
   padding: 13px 22px;
   border-radius: 40px;
   font-family: "Raleway", sans-serif;
@@ -572,13 +577,13 @@
 }
 
 .fav-menu-toggle:hover {
-  border-color: #f8f3ec;
+  border-color: var(--lh-accent-text);
 }
 
 .fav-menu-toggle span {
   display: block;
   height: 2px;
-  background: #f8f3ec;
+  background: var(--lh-bg);
   border-radius: 2px;
   transition:
     transform 0.35s ease,
@@ -605,7 +610,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: #5a3626;
+  background: var(--lh-accent);
   z-index: 199;
   padding: 80px 20px 24px;
   flex-direction: column;
@@ -627,8 +632,8 @@
   padding: 13px 16px;
   border-radius: 8px;
   border: 1px solid rgba(248, 243, 236, 0.15);
-  background: rgba(248, 243, 236, 0.07);
-  color: #f8f3ec;
+  background: var(--lh-nav-hover);
+  color: var(--lh-accent-text);
   text-decoration: none;
   font-family: "Cinzel", serif;
   font-size: 14px;
@@ -641,7 +646,7 @@
 }
 
 .fav-drawer-link:hover {
-  background: rgba(248, 243, 236, 0.15);
+  background: var(--lh-nav-hover);
   border-color: rgba(248, 243, 236, 0.3);
 }
 
@@ -657,19 +662,19 @@
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.05em;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(248, 243, 236, 0.07);
+  background: var(--lh-nav-hover);
   transition:
     background 0.25s ease,
     border-color 0.25s ease;
 }
 
 .fav-drawer-btn:hover {
-  background: rgba(248, 243, 236, 0.15);
+  background: var(--lh-nav-hover);
   border-color: rgba(248, 243, 236, 0.3);
 }
 
@@ -677,7 +682,7 @@
 .fav-drawer-badge {
   margin-left: auto;
   background: rgba(196, 169, 154, 0.85);
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   font-family: "Raleway", sans-serif;
   font-size: 12px;
   font-weight: 700;

@@ -20,8 +20,8 @@ html {
 
 body {
   font-family: "Raleway", sans-serif;
-  background: #f8f3ec;
-  color: #2c1a10;
+  background: var(--lh-bg);
+  color: var(--lh-text-primary);
   min-height: 100vh;
 }
 
@@ -201,7 +201,7 @@ body {
   font-family: "Cinzel", serif;
   font-size: 28px;
   font-weight: 700;
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   letter-spacing: 0.06em;
   text-align: center;
   line-height: 1.4;
@@ -246,7 +246,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 60px 48px;
-  background: #f8f3ec;
+  background: var(--lh-bg);
   overflow-y: auto;
 }
 
@@ -260,7 +260,7 @@ body {
   font-family: "Cinzel", serif;
   font-size: 30px;
   font-weight: 700;
-  color: #2c1a10;
+  color: var(--lh-text-primary);
   letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
@@ -268,7 +268,7 @@ body {
 .auth-form-subtitle {
   font-family: "Raleway", sans-serif;
   font-size: 15px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
   margin-bottom: 36px;
   line-height: 1.6;
 }
@@ -281,7 +281,7 @@ body {
   padding: 12px 16px;
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
-  color: #b94040;
+  color: var(--lh-error);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -308,7 +308,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #5a3626;
+  color: var(--lh-accent);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: 7px;
@@ -323,7 +323,7 @@ body {
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
   font-size: 15px;
   pointer-events: none;
   transition: color 0.25s;
@@ -332,12 +332,12 @@ body {
 .auth-input {
   width: 100%;
   padding: 13px 14px 13px 42px;
-  border: 1.5px solid rgba(90, 54, 38, 0.18);
+  border: 1.5px solid var(--lh-border-strong);
   border-radius: 10px;
   font-family: "Raleway", sans-serif;
   font-size: 15px;
-  color: #2c1a10;
-  background: #ffffff;
+  color: var(--lh-text-primary);
+  background: var(--lh-surface);
   outline: none;
   transition:
     border-color 0.25s ease,
@@ -345,17 +345,17 @@ body {
 }
 
 .auth-input::placeholder {
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
 }
 
 .auth-input:focus {
-  border-color: #5a3626;
+  border-color: var(--lh-accent);
   box-shadow: 0 0 0 3px rgba(90, 54, 38, 0.1);
 }
 
 .auth-input:focus + .auth-input-icon,
 .auth-input-wrap:focus-within .auth-input-icon {
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 
 /* Password toggle button (show/hide) */
@@ -367,7 +367,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
   font-size: 14px;
   padding: 4px;
   transition: color 0.22s;
@@ -375,7 +375,7 @@ body {
 }
 
 .auth-pw-toggle:hover {
-  color: #5a3626;
+  color: var(--lh-accent);
 }
 
 /* ── Forgot password link ── */
@@ -399,7 +399,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   text-decoration: none;
   margin-top: -10px;
   margin-bottom: 24px;
@@ -407,7 +407,7 @@ body {
 }
 
 .auth-forgot:hover {
-  color: #5a3626;
+  color: var(--lh-accent);
   text-decoration: underline;
 }
 
@@ -422,7 +422,7 @@ body {
   width: 100%;
   padding: 15px 20px;
   background: linear-gradient(135deg, #5a3626, #7a4a34);
-  color: #f8f3ec;
+  color: var(--lh-accent-text);
   border: none;
   border-radius: 10px;
   font-family: "Cinzel", serif;
@@ -476,13 +476,13 @@ body {
 .auth-divider-line {
   flex: 1;
   height: 1px;
-  background: rgba(90, 54, 38, 0.12);
+  background: var(--lh-nav-active);
 }
 
 .auth-divider-text {
   font-family: "Raleway", sans-serif;
   font-size: 12.5px;
-  color: #c4a99a;
+  color: var(--lh-text-placeholder);
   white-space: nowrap;
   letter-spacing: 0.04em;
 }
@@ -492,30 +492,30 @@ body {
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  color: #9a7060;
+  color: var(--lh-text-muted);
 }
 
 .auth-switch a {
-  color: #5a3626;
+  color: var(--lh-accent);
   font-weight: 700;
   text-decoration: none;
   transition: color 0.22s;
 }
 
 .auth-switch a:hover {
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   text-decoration: underline;
 }
 
 /* ── Redirect notice (shown when user is directed from a guarded page) ── */
 .auth-redirect-notice {
-  background: rgba(90, 54, 38, 0.07);
-  border: 1.5px solid rgba(90, 54, 38, 0.18);
+  background: var(--lh-nav-hover);
+  border: 1.5px solid var(--lh-border-strong);
   border-radius: 10px;
   padding: 12px 16px;
   font-family: "Raleway", sans-serif;
   font-size: 13.5px;
-  color: #5a3626;
+  color: var(--lh-accent);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -543,14 +543,14 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #7a4a34;
+  color: var(--lh-accent-hover);
   padding: 0;
   margin-bottom: 20px;
   transition: color 0.22s;
 }
 
 .auth-back-btn:hover {
-  color: #5a3626;
+  color: var(--lh-accent);
   text-decoration: underline;
 }
 
@@ -570,7 +570,7 @@ body {
   flex: 1;
   height: 4px;
   border-radius: 4px;
-  background: rgba(90, 54, 38, 0.1);
+  background: var(--lh-nav-active);
   transition: background 0.35s ease;
   position: relative;
   overflow: hidden;
@@ -588,7 +588,7 @@ body {
 
 .pw-strength-bar.pw-weak::after {
   width: 33%;
-  background: #b94040;
+  background: var(--lh-error);
 }
 
 .pw-strength-bar.pw-medium::after {
@@ -598,7 +598,7 @@ body {
 
 .pw-strength-bar.pw-strong::after {
   width: 100%;
-  background: #2e7d32;
+  background: var(--lh-success);
 }
 
 .pw-strength-label {
@@ -610,13 +610,13 @@ body {
 }
 
 .pw-strength-label.pw-weak {
-  color: #b94040;
+  color: var(--lh-error);
 }
 .pw-strength-label.pw-medium {
   color: #c4820a;
 }
 .pw-strength-label.pw-strong {
-  color: #2e7d32;
+  color: var(--lh-success);
 }
 
 /* ── Responsive ── */
@@ -642,12 +642,12 @@ body {
     font-family: "Cinzel", serif;
     font-size: 20px;
     font-weight: 700;
-    color: #5a3626;
+    color: var(--lh-accent);
     letter-spacing: 0.08em;
     text-align: center;
     margin-bottom: 32px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(90, 54, 38, 0.12);
+    border-bottom: 1px solid var(--lh-border);
   }
 }
 

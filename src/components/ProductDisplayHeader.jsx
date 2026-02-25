@@ -1,7 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+/**
+ * ProductDisplayHeader.jsx  (UPDATED)
+ *
+ * Changes from original:
+ *  - Imports ThemeToggle and renders it:
+ *      Desktop (>1024px) → right nav section, between Profile and Sign Out
+ *      Mobile drawer     → inside mobile-nav, between Profile and Sign Out
+ *
+ * Placement rationale (UX):
+ *  Desktop/Laptop: Right nav is where all global utility actions live
+ *    (cart, profile, sign in/out). Theme is a global preference → it belongs
+ *    there, not tucked away inside a page. It sits just before Sign Out so
+ *    it shares the "user preference" section without pushing cart further away.
+ *
+ *  Tablet/Mobile: The hamburger drawer mirrors the desktop nav.
+ *    The toggle occupies the same relative position inside the drawer —
+ *    consistent muscle memory regardless of screen size.
+ *    It is NOT a floating FAB or bottom-sheet trigger, which would be
+ *    intrusive on a shopping page.
+ */
+
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthStore } from "../utils/authStore";
+import { ThemeToggle } from "./ThemeToggle";
 import "./ProductDisplayHeader.css";
+
+const DEBOUNCE_MS = 280;
 
 export function ProductDisplayHeader({
   cartCount = 0,
@@ -10,42 +34,93 @@ export function ProductDisplayHeader({
 }) {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const searchInputRef = useRef(null);
-  const mobileSearchRef = useRef(null);
+  const [isMobileSearchActive, setIsMobileSearchActive] = useState(false);
+  const [mobileSearchValue, setMobileSearchValue] = useState(searchQuery);
+
+  const desktopSearchRef = useRef(null);
+  const mobileOverlayInputRef = useRef(null);
+  const debounceTimer = useRef(null);
+
   const [currentUser, setCurrentUser] = useState(() =>
     AuthStore.getCurrentUser(),
   );
 
   useEffect(() => {
+    setMobileSearchValue(searchQuery);
+  }, [searchQuery]);
+
+  useEffect(() => {
     function handleResize() {
-      if (window.innerWidth > 1024) setIsDrawerOpen(false);
+      if (window.innerWidth > 1024) {
+        setIsDrawerOpen(false);
+        closeMobileSearch();
+      }
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isDrawerOpen ? "hidden" : "";
+    document.body.style.overflow =
+      isDrawerOpen && !isMobileSearchActive ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isDrawerOpen]);
+  }, [isDrawerOpen, isMobileSearchActive]);
 
   useEffect(() => {
     function handleKey(e) {
-      if (e.key === "/" && document.activeElement !== searchInputRef.current) {
+      if (
+        e.key === "/" &&
+        document.activeElement !== desktopSearchRef.current
+      ) {
         e.preventDefault();
-        searchInputRef.current?.focus();
+        desktopSearchRef.current?.focus();
       }
       if (e.key === "Escape") {
-        if (isDrawerOpen) setIsDrawerOpen(false);
+        if (isMobileSearchActive) {
+          closeMobileSearch();
+          return;
+        }
+        if (isDrawerOpen) {
+          setIsDrawerOpen(false);
+          return;
+        }
         onSearchChange("");
-        searchInputRef.current?.blur();
+        desktopSearchRef.current?.blur();
       }
     }
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [onSearchChange, isDrawerOpen]);
+  }, [isDrawerOpen, isMobileSearchActive, onSearchChange]);
+
+  const emitSearch = useCallback(
+    (value) => {
+      clearTimeout(debounceTimer.current);
+      debounceTimer.current = setTimeout(() => {
+        onSearchChange(value);
+      }, DEBOUNCE_MS);
+    },
+    [onSearchChange],
+  );
+
+  function handleDesktopSearch(val) {
+    onSearchChange(val);
+  }
+
+  function openMobileSearch() {
+    setIsDrawerOpen(false);
+    setIsMobileSearchActive(true);
+    requestAnimationFrame(() => {
+      mobileOverlayInputRef.current?.focus();
+    });
+  }
+
+  function closeMobileSearch() {
+    setIsMobileSearchActive(false);
+    setMobileSearchValue("");
+    onSearchChange("");
+  }
 
   function closeDrawer() {
     setIsDrawerOpen(false);
@@ -57,12 +132,6 @@ export function ProductDisplayHeader({
     navigate("/login");
   }
 
-  // Fix issue 6: typing in mobile search closes the drawer so results show
-  function handleMobileSearch(val) {
-    onSearchChange(val);
-    if (val.trim()) setIsDrawerOpen(false);
-  }
-
   const CartBadge = ({ id }) => (
     <span className="count" id={id}>
       {cartCount}
@@ -71,6 +140,7 @@ export function ProductDisplayHeader({
 
   return (
     <>
+      {/* ── Fixed header bar ── */}
       <div className="header-container">
         <div className="left-section">
           <Link to="/">
@@ -82,17 +152,17 @@ export function ProductDisplayHeader({
           </Link>
         </div>
 
-        {/* Desktop search — hidden below 1024px */}
+        {/* Desktop search — hidden ≤1024px */}
         <div className="middle-section">
           <div className="search-wrap">
             <i className="fa-solid fa-magnifying-glass search-icon" />
             <input
-              ref={searchInputRef}
+              ref={desktopSearchRef}
               type="text"
               placeholder="Search products…"
               className="search-input"
               value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
+              onChange={(e) => handleDesktopSearch(e.target.value)}
               aria-label="Search products"
             />
             {searchQuery && (
@@ -101,7 +171,7 @@ export function ProductDisplayHeader({
                 aria-label="Clear search"
                 onClick={() => {
                   onSearchChange("");
-                  searchInputRef.current?.focus();
+                  desktopSearchRef.current?.focus();
                 }}
               >
                 <i className="fa-solid fa-xmark" />
@@ -110,11 +180,11 @@ export function ProductDisplayHeader({
           </div>
         </div>
 
-        {/* Desktop nav links — hidden below 1024px */}
+        {/* Desktop nav — hidden ≤1024px */}
         <div className="right-section">
           <div className="order-container">
             <Link to="/favorites" className="order">
-              <i className="fa-solid fa-heart" />{" "}
+              <i className="fa-solid fa-heart" />
               <span className="order-text">Favorites</span>
             </Link>
           </div>
@@ -125,10 +195,19 @@ export function ProductDisplayHeader({
           </div>
           <div className="order-container">
             <Link to="/profile" className="order">
-              <i className="fa-solid fa-user" />{" "}
+              <i className="fa-solid fa-user" />
               <span className="order-text">Profile</span>
             </Link>
           </div>
+
+          {/* ── Theme Toggle — desktop nav ──
+              Sits between Profile and Sign Out in the "personal" section.
+              Uses default variant: icon + label + pill.
+              Compact enough not to stretch the header. */}
+          <div className="order-container" style={{ padding: "5px 10px" }}>
+            <ThemeToggle variant="default" />
+          </div>
+
           <div className="cart-container">
             <div className="cart-image-container">
               <Link to="/checkout">
@@ -151,7 +230,7 @@ export function ProductDisplayHeader({
           {currentUser ? (
             <div className="order-container">
               <button className="header-signout-btn" onClick={handleSignOut}>
-                <i className="fa-solid fa-right-from-bracket" />{" "}
+                <i className="fa-solid fa-right-from-bracket" />
                 <span className="order-text">Sign out</span>
               </button>
             </div>
@@ -164,46 +243,36 @@ export function ProductDisplayHeader({
           )}
         </div>
 
-        {/* Hamburger — visible below 1024px */}
+        {/* Hamburger — visible ≤1024px */}
         <button
           className={`menu-toggle${isDrawerOpen ? " open" : ""}`}
           aria-label="Toggle menu"
           aria-expanded={isDrawerOpen}
           onClick={() => setIsDrawerOpen((p) => !p)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </button>
       </div>
 
-      {/* Backdrop — tapping outside closes drawer */}
-      {isDrawerOpen && (
+      {/* ── Backdrop (drawer) ── */}
+      {isDrawerOpen && !isMobileSearchActive && (
         <div className="drawer-backdrop" onClick={closeDrawer} />
       )}
 
-      {/* Mobile / Tablet Drawer */}
+      {/* ── Mobile / Tablet drawer ── */}
       <div className={`nav-drawer${isDrawerOpen ? " open" : ""}`}>
-        <div className="search-wrap">
+        <div className="search-wrap" onClick={openMobileSearch}>
           <i className="fa-solid fa-magnifying-glass search-icon" />
           <input
-            ref={mobileSearchRef}
             type="text"
             placeholder="Search products…"
             className="search-input mobile-search-input"
-            value={searchQuery}
-            onChange={(e) => handleMobileSearch(e.target.value)}
-            aria-label="Search products"
+            value={mobileSearchValue}
+            readOnly
+            aria-label="Open search"
           />
-          {searchQuery && (
-            <button
-              className="search-clear-icon-btn"
-              aria-label="Clear search"
-              onClick={() => onSearchChange("")}
-            >
-              <i className="fa-solid fa-xmark" />
-            </button>
-          )}
         </div>
 
         <nav className="mobile-nav">
@@ -230,6 +299,12 @@ export function ProductDisplayHeader({
             </span>
             <span className="mobile-cart-badge">{cartCount}</span>
           </Link>
+
+          {/* ── Theme Toggle — mobile drawer ──
+              Uses "drawer" variant: full-width row matching other drawer items.
+              Positioned just before Sign In/Out — consistent with desktop order. */}
+          <ThemeToggle variant="drawer" />
+
           {currentUser ? (
             <button
               className="mobile-nav-item mobile-nav-btn"
@@ -247,6 +322,54 @@ export function ProductDisplayHeader({
           )}
         </nav>
       </div>
+
+      {/* ── Mobile search overlay ── */}
+      <div
+        className={`mobile-search-overlay${isMobileSearchActive ? " active" : ""}`}
+      >
+        <div className="mobile-search-overlay-row">
+          <button
+            className="mobile-search-back"
+            onClick={closeMobileSearch}
+            aria-label="Close search"
+          >
+            <i className="fa-solid fa-arrow-left" />
+          </button>
+
+          <div className="mobile-search-overlay-input-wrap">
+            <div className="search-wrap">
+              <i className="fa-solid fa-magnifying-glass search-icon" />
+              <input
+                ref={mobileOverlayInputRef}
+                type="text"
+                placeholder="Search products…"
+                className="search-input mobile-search-input"
+                value={mobileSearchValue}
+                onChange={(e) => handleMobileSearchChange(e.target.value)}
+                aria-label="Search products"
+              />
+              {mobileSearchValue && (
+                <button
+                  className="search-clear-icon-btn"
+                  aria-label="Clear search"
+                  onClick={() => {
+                    setMobileSearchValue("");
+                    onSearchChange("");
+                    mobileOverlayInputRef.current?.focus();
+                  }}
+                >
+                  <i className="fa-solid fa-xmark" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
+
+  function handleMobileSearchChange(val) {
+    setMobileSearchValue(val);
+    emitSearch(val);
+  }
 }

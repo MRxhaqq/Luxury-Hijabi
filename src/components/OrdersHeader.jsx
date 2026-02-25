@@ -1,5 +1,15 @@
+/**
+ * OrdersHeader.jsx  (UPDATED)
+ *
+ * Changes from original:
+ *  - Imports ThemeToggle and renders it:
+ *      Desktop nav  → compact variant between Cart and Shop links
+ *      Mobile drawer → drawer variant as a full-width nav row
+ */
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
+import { ThemeToggle } from "./ThemeToggle";
 import "./OrdersHeader.css";
 
 export function OrdersHeader({ orderCount = 0, cartCount = 0 }) {
@@ -59,6 +69,9 @@ export function OrdersHeader({ orderCount = 0, cartCount = 0 }) {
             <Link to="/" className="oh-nav-link">
               <i className="fa-solid fa-house" /> Shop
             </Link>
+
+            {/* ── Theme Toggle — compact variant in desktop nav ── */}
+            <ThemeToggle variant="compact" />
           </nav>
 
           <button
@@ -94,6 +107,9 @@ export function OrdersHeader({ orderCount = 0, cartCount = 0 }) {
           <Link to="/" className="oh-drawer-link" onClick={close}>
             <i className="fa-solid fa-house" /> Shop
           </Link>
+
+          {/* ── Theme Toggle — drawer variant in mobile nav ── */}
+          <ThemeToggle variant="drawer" />
         </nav>
       </div>
     </>
